@@ -1,0 +1,42 @@
+.header {
+    padding: 5px 10px;
+    display: flex;
+    height: 3.5rem;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    right: 0;
+    background-color: #1a1b1e;
+    justify-content: space-between;
+}
+.header div {
+    display: flex;
+    align-items: center;
+}
+.header div h2 {
+    font-size: 25px;
+    font-weight: 500;
+}
+.logo {
+    pointer-events: none;
+    width: 37px;
+    border-radius: 4px;
+    margin-right: 5px;
+    height: 37px;
+}
+@media screen and (max-width: 550px) {
+    .header {
+        height: 2.5rem;
+        padding: 10px 0;
+        justify-content: center;
+    }
+    .header div h2 {
+        font-size: 20px;
+        font-weight: 400;
+    }
+    .logo {
+        width: 30px;
+    }
+}

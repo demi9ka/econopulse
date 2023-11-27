@@ -1,0 +1,27 @@
+* {
+    padding: 0;
+    margin: 0;
+    outline: 0;
+    user-select: none;
+    font-family: 'Noto Sans', sans-serif;
+    color: #f1f3f5;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #1a1b1e;
+    height: 100vh;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #101113;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #2c2e33;
+    border-radius: 3px;
+}

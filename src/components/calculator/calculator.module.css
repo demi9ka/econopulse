@@ -1,0 +1,25 @@
+.wrapper {
+    padding: 20px 40px;
+    padding-bottom: 200px;
+}
+.title {
+    font-size: 23px;
+    font-weight: 400;
+    padding: 10px 0;
+}
+.header {
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+}
+
+@media screen and (max-width: 550px) {
+    .title {
+        font-size: 17px;
+        padding: 0;
+    }
+    .wrapper {
+        padding: 10px 10px;
+        padding-bottom: 120px;
+    }
+}

@@ -1,0 +1,32 @@
+.wrapper {
+    padding: 0 10px;
+    padding-bottom: 10px;
+    display: flex;
+    justify-content: end;
+    margin-top: 16px;
+    align-content: center;
+}
+/* @media screen and (max-width: 700px) {
+    .wrapper {
+        padding-bottom: 5vh;
+    }
+} */
+.save_btn {
+    height: 30px;
+    font-size: 14px;
+    background-color: #4263eb;
+    font-weight: 300;
+    outline: 0;
+    border: 0;
+    border-radius: 4px;
+    padding: 5px 15px;
+    cursor: pointer;
+}
+@media screen and (max-width: 700px) {
+    .save_btn {
+        width: calc(100% - 4px);
+        padding: 5px 0;
+        height: 40px;
+        font-size: 16px;
+    }
+}

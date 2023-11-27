@@ -1,0 +1,15 @@
+.wrapper {
+    padding: 6px;
+    padding-top: 3.5rem;
+    /* width: calc(100vw - 12px); */
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #141517;
+}
+@media screen and (max-width: 1024px) {
+    .wrapper {
+        height: auto;
+    }
+}

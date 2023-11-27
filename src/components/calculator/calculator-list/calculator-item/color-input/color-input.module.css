@@ -1,0 +1,26 @@
+.color_input {
+    border-radius: 15px;
+    cursor: pointer;
+    border: 0;
+    outline: 0;
+    overflow: hidden;
+    width: 28px;
+    height: 28px;
+    margin-right: 10px;
+    transition: 0.2s;
+}
+.color_input:hover {
+    transform: scale(1.1);
+}
+.color_input:focus {
+    transform: scale(1.1);
+}
+.color_input::-webkit-color-swatch-wrapper {
+    padding: 0;
+    border: none;
+    outline: 0;
+}
+
+.color_input::-webkit-color-swatch {
+    border: none;
+}
