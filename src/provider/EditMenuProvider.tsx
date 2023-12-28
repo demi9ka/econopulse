@@ -30,7 +30,7 @@ const EditMenuProvider: FC<{ children: ReactNode }> = ({ children }) => {
     const [menu_item_copy, setMenuItemCopy] = useState<null | ICalculatorItem>(null)
     useEffect(() => {
         if (Number.isFinite(menu_item_id)) {
-            setMenuItemCopy(cloneDeep(calculation_data[menu_item_id!]))
+            setMenuItemCopy(cloneDeep(calculation_data.data[menu_item_id!]))
         } else {
             setMenuItemCopy(null)
         }

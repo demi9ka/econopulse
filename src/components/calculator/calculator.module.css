@@ -12,7 +12,10 @@
     align-items: center;
     display: flex;
 }
-
+.set_chart_type {
+    width: 100%;
+    height: ;
+}
 @media screen and (max-width: 550px) {
     .title {
         font-size: 17px;

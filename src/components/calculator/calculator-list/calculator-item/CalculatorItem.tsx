@@ -4,11 +4,7 @@ import ColorInput from './color-input/ColorInput'
 import DataCalculator from './data-calculator/DataCalculator'
 import ItemManagement from './management/Management'
 
-interface ICalculationItemProps {
-    id: number
-}
-
-const CalculationItem: FC<ICalculationItemProps> = ({ id }) => {
+const CalculationItem: FC<{ id: number }> = ({ id }) => {
     return (
         <div className={styles.item}>
             <ColorInput id={id} />

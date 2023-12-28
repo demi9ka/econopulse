@@ -13,7 +13,7 @@ const CalculationList = () => {
     const { setMenuItemId, setListSelectedId, setListSelectedIndex } = useContext(EditMenuContext) as IEditMenuContext
     return (
         <div className={styles.item_wrapper}>
-            {calculation_data.map((_, id) => (
+            {calculation_data.data.map((_, id) => (
                 <CalculationItem key={id} id={id} />
             ))}
             <Button
@@ -23,8 +23,8 @@ const CalculationList = () => {
                 bg={'#228be60c'}
                 style={{ border: '1px solid #228be663' }}
                 onClick={() => {
-                    calculation_data!.push(getDefaultValue(INDEX_DATA[0][0], getRandomColor()))
-                    setMenuItemId(calculation_data.length - 1)
+                    calculation_data.data!.push(getDefaultValue(INDEX_DATA[0][0], getRandomColor()))
+                    setMenuItemId(calculation_data.data.length - 1)
                     setListSelectedIndex(0)
                     setListSelectedId(0)
                 }}

@@ -18,8 +18,8 @@ const EditManagement = () => {
                 className={styles.save_btn}
                 disabled={checkDisableButton(menu_item_copy!)}
                 onClick={() => {
-                    calculation_data[menu_item_id!] = menu_item_copy!
-                    setCalculationData([...calculation_data])
+                    calculation_data.data[menu_item_id!] = menu_item_copy!
+                    setCalculationData(calculation_data)
                     setMenuItemId(null)
                 }}
             >

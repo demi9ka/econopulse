@@ -12,10 +12,10 @@ const DataCalculator: FC<{ id: number }> = ({ id }) => {
         <div
             className={`${styles.wrapper} ${styles.cursor_pointer} ${styles.view_wrapper}`}
             onClick={() => {
-                setMenuItemId(id), setListSelectedIndex(0), setListSelectedId(calculation_data[id].data[0].id)
+                setMenuItemId(id), setListSelectedIndex(0), setListSelectedId(calculation_data.data[id].data[0].id)
             }}
         >
-            {calculation_data[id].data.map((item, id) => (
+            {calculation_data.data[id].data.map((item, id) => (
                 <div key={id} className={styles.item_wrapper}>
                     <div title={INDEX_DATA[item.id!][1]} className={styles.item}>
                         {Number.isFinite(item.id) ? INDEX_DATA[item.id!][0] : ''}

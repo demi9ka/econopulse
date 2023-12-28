@@ -41,16 +41,7 @@ const Chart = () => {
     const { chart_data } = useContext(ChartDataContext) as IChartDataContext
     const { calculation_data } = useContext(CalculationContext) as ICalculationContext
     const [use_line, setUseLine] = useState(false)
-    useEffect(() => {
-        let res = false
-        for (const item of calculation_data) {
-            if (item.roc) {
-                res = true
-                break
-            }
-        }
-        setUseLine(res)
-    }, [chart_data])
+    useEffect(() => setUseLine(calculation_data.type === 'roc'), [chart_data])
     return (
         <div className={styles.wrapper}>
             <Line options={use_line ? options_with_line : options} data={chart_data} />

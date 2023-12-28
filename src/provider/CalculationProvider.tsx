@@ -22,7 +22,13 @@ const CalculationProvider: FC<{ children: ReactNode }> = ({ children }) => {
     }, [])
     const local_data_buffer = JSON.parse(localStorage.getItem('calculation_data')!)
     const [data, setData] = useState<[[string, string][], string[]]>([[], []])
-    const [calculation_data, setCalculationData] = useState(local_data_buffer || [getDefaultValue('График 1')])
+    const [calculation_data, setCalculationData] = useState<ICalculatorData>(
+        local_data_buffer || {
+            crop_id: null,
+            data: [getDefaultValue('Индекс МосБиржи')],
+            type: null,
+        }
+    )
     useEffect(() => localStorage.setItem('calculation_data', JSON.stringify(calculation_data)), [calculation_data])
 
     return <CalculationContext.Provider value={{ calculation_data, setCalculationData, INDEX_DATA: data[0], ACTION_DATA: data[1] }}>{children}</CalculationContext.Provider>

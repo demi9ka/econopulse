@@ -23,9 +23,9 @@ const ChartDataProvider: FC<{ children: ReactNode }> = ({ children }) => {
 
     useEffect(() => {
         const Fun = async () => {
-            if (calculation_data.length) {
+            if (calculation_data.data.length) {
                 setChartData(await getChartData(calculation_data))
-                setUseLine(!!calculation_data.filter(item => item.roc).length)
+                setUseLine(calculation_data.type === 'roc')
             }
         }
         Fun()
