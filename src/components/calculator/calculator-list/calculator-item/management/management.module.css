@@ -19,6 +19,39 @@
 } */
 .option_icon {
     padding: 2px;
-    border-radius: 3px;
     margin-right: 5px;
+}
+.wrapper_icon {
+    position: relative;
+    cursor: pointer;
+}
+.wrapper_icon .option_icon {
+    margin-top: 4px;
+}
+.hint {
+    position: absolute;
+    bottom: 100%;
+    right: 5px;
+    font-size: 14px;
+    padding: 4px 10px;
+    opacity: 0;
+    pointer-events: none;
+    background-color: #0f0f0f;
+    width: 200px;
+    transition: 0.1s 0.2s ease;
+    box-shadow: 0 0 15px #0f0f0f;
+    border: 1px solid #252525;
+    border-radius: 5px;
+}
+.hint p {
+    font-size: 13px;
+}
+.hint h4 {
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+.wrapper_icon:hover .hint {
+    bottom: 110%;
+    opacity: 1;
 }
