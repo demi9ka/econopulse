@@ -1,5 +1,6 @@
 .list_wrapper {
     overflow-y: auto;
+    flex-grow: 2;
 }
 .list_wrapper::-webkit-scrollbar {
     width: 0;

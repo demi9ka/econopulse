@@ -1,14 +1,14 @@
 .wrapper {
-    flex-grow: 2;
     display: flex;
     align-items: center;
     padding: 2px;
     padding-top: 0;
     border-radius: 3px;
     flex-wrap: wrap;
+    flex-grow: 2;
 }
 .wrapper.edit {
-    flex-grow: 1;
+    flex-grow: 0;
 }
 
 .view_wrapper {
@@ -39,26 +39,16 @@
     padding: 5px 6px;
     font-size: 13px;
     border-radius: 3px;
-    width: 100px;
+    min-width: 80px;
     height: 30px;
     text-align: center;
     position: relative;
     background-color: #121214;
+    border: 1px solid #121214;
     cursor: pointer;
 }
-.item::before {
-    content: '';
-    position: absolute;
-    opacity: 0;
-    width: 104px;
-    height: 34px;
-    top: -2px;
-    left: -2px;
-    border-radius: 4px;
+.item.active {
     border: 1px solid #475fc0;
-}
-.item.item__active::before {
-    opacity: 1;
 }
 .item_wrapper {
     margin: 5px 0;

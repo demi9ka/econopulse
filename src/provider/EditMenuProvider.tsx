@@ -5,6 +5,7 @@ import cloneDeep from 'lodash/cloneDeep'
 
 type IListSelectedIndex = number | null
 type IListSelectedId = number | null
+type IListGroup = number
 // number - существует
 // undefiend - не показывать список
 // null - без выбраного элемента
@@ -12,6 +13,8 @@ type IListSelectedId = number | null
 export interface IEditMenuContext {
     list_selected_id: IListSelectedId // id в базе выбраного элемента в ячейке функции
     list_selected_index: IListSelectedIndex // порядковый номер ячейки в функции
+    group: IListGroup
+    setGroup: React.Dispatch<React.SetStateAction<IListGroup>>
     setListSelectedId: React.Dispatch<React.SetStateAction<IListSelectedId>>
     setListSelectedIndex: React.Dispatch<React.SetStateAction<IListSelectedIndex>>
 
@@ -23,6 +26,7 @@ export interface IEditMenuContext {
 
 const EditMenuContext = createContext<IEditMenuContext | null>(null)
 const EditMenuProvider: FC<{ children: ReactNode }> = ({ children }) => {
+    const [group, setGroup] = useState<IListGroup>(-1)
     const [list_selected_id, setListSelectedId] = useState<IListSelectedId>(null)
     const [list_selected_index, setListSelectedIndex] = useState<IListSelectedIndex>(null)
     const [menu_item_id, setMenuItemId] = useState<number | null>(null)
@@ -36,7 +40,7 @@ const EditMenuProvider: FC<{ children: ReactNode }> = ({ children }) => {
         }
     }, [menu_item_id])
 
-    return <EditMenuContext.Provider value={{ list_selected_id, list_selected_index, menu_item_copy, menu_item_id, setListSelectedId, setListSelectedIndex, setMenuItemCopy, setMenuItemId }}>{children}</EditMenuContext.Provider>
+    return <EditMenuContext.Provider value={{ list_selected_id, list_selected_index, menu_item_copy, menu_item_id, group, setListSelectedId, setListSelectedIndex, setMenuItemCopy, setMenuItemId, setGroup }}>{children}</EditMenuContext.Provider>
 }
 
 export { EditMenuProvider, EditMenuContext }

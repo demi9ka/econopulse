@@ -15,7 +15,7 @@ const EditDataCalculator = () => {
             {menu_item_copy!.data.map((item, id) => (
                 <div key={id} className={styles.item_wrapper}>
                     <div
-                        className={`${styles.item} ${list_selected_index === id && styles.item__active}`}
+                        className={`${styles.item} ${list_selected_index === id && styles.active}`}
                         onClick={() => {
                             setListSelectedId(item.id)
                             setListSelectedIndex(id)

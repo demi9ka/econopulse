@@ -6,6 +6,7 @@ import styles from './edit-menu.module.css'
 import EditDataCalculator from './edit-data-calculator/EditDataCalculator'
 import ListMenu from './list-menu/ListMenu'
 import EditManagement from './edit-management/EditManagement'
+import ListGroup from './list-group/ListGroup'
 import { useMediaQuery } from '@mantine/hooks'
 
 const EditMenu = () => {
@@ -18,6 +19,7 @@ const EditMenu = () => {
                     {menu_item_copy && (
                         <div className={styles.content}>
                             <EditDataCalculator />
+                            <ListGroup />
                             <ListMenu />
                             <EditManagement />
                         </div>
@@ -30,6 +32,7 @@ const EditMenu = () => {
                             <div className={styles.close_elem} onClick={() => setMenuItemId(null)}></div>
                             <div className={styles.mobile_menu}>
                                 <ListMenu />
+                                <ListGroup />
                                 <EditDataCalculator />
                                 <EditManagement />
                             </div>
