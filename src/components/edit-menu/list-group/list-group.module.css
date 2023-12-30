@@ -1,0 +1,25 @@
+.group_wrapper {
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+
+    overflow: unset;
+    align-items: center;
+    margin-bottom: 5px;
+}
+.group_item {
+    border: 1px solid #987af1;
+    font-size: 14px;
+    padding: 2px 20px;
+    border-radius: 4px;
+    margin: 2px;
+    text-align: center;
+    transition: 0.1s;
+    cursor: pointer;
+}
+
+.group_item.active {
+    cursor: default;
+    background-color: #987af1;
+}
