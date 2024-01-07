@@ -1,13 +1,17 @@
 import styles from './header.module.css'
+import { Link } from 'react-router-dom'
 
 const Header = () => {
     return (
         <header className={styles.header}>
-            <div>
+            <Link to={'/'}>
                 <img className={styles.logo} src="/logo.svg" alt="" />
                 <h2>Finstream</h2>
+            </Link>
+            <div>
+                <Link to={'/register'}>Регистрация</Link>
+                <Link to={'/login'}>Вход</Link>
             </div>
-            <div></div>
         </header>
     )
 }

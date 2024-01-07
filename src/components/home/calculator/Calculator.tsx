@@ -1,12 +1,12 @@
 import CalculationList from './calculator-list/CalculatorList'
 import styles from './calculator.module.css'
-import { Button, Loader, Menu } from '@mantine/core'
+import { Button, Loader, Menu, MenuItem } from '@mantine/core'
 import { useContext, useState } from 'react'
 import { ICalculationContext, CalculationContext } from 'provider/CalculationProvider'
 import getChartData from 'services/getChartData'
 import { IChartDataContext, ChartDataContext } from 'provider/ChartDataProvider'
 import { useMediaQuery } from '@mantine/hooks'
-import { IconHexagonLetterR, IconArrowsExchange, IconCheck, IconCircleOff, IconCaretDownFilled } from '@tabler/icons-react'
+import { IconHexagonLetterR, IconArrowsExchange, IconCheck, IconCircleOff, IconCaretDownFilled, IconBookmark, IconDownload, IconUpload, IconChevronDown } from '@tabler/icons-react'
 
 const type_data = {
     roc: ['ROC', <IconHexagonLetterR color="#7950F2" style={{ margin: '0 8px' }} width={20} />],
@@ -22,11 +22,28 @@ const Calculator = () => {
     return (
         <div className={styles.wrapper}>
             <div className={styles.header}>
-                <h2 className={styles.title}>Калькулятор значений</h2>
+                <div style={{ display: 'flex', alignItems: 'center' }}>
+                    <h2 className={styles.title}>Калькулятор значений</h2>
+                    <Menu withArrow shadow="md" position="bottom-start">
+                        <Menu.Target>
+                            <Button rightSection={<IconChevronDown width={14} />} px={10} py={0} bg={'#25262b'} title="Закладки" ml={15}>
+                                <IconBookmark color="#FCC419" width={20} />
+                            </Button>
+                        </Menu.Target>
+                        <Menu.Dropdown>
+                            <Menu.Item p={6} leftSection={<IconDownload width={17} />}>
+                                Загрузить из списка
+                            </Menu.Item>
+                            <Menu.Item p={6} leftSection={<IconUpload width={17} />}>
+                                Сохранить текущую
+                            </Menu.Item>
+                        </Menu.Dropdown>
+                    </Menu>
+                </div>
                 <div>
                     <Menu position="bottom-end" withArrow shadow="md" width={200}>
                         <Menu.Target>
-                            <Button fw={'normal'} bg={'#25262b'}>
+                            <Button fw={'normal'} bg={'#25262b'} rightSection={<IconChevronDown width={14} />}>
                                 {calculation_data.type && (
                                     <>
                                         {type_data[calculation_data.type][0]}
@@ -34,7 +51,6 @@ const Calculator = () => {
                                     </>
                                 )}
                                 {!calculation_data.type && 'Тип графика'}
-                                <IconCaretDownFilled width={13} />
                             </Button>
                         </Menu.Target>
 
