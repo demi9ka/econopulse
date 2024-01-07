@@ -10,7 +10,7 @@
 
 body {
     background-color: #1a1b1e;
-    height: 100vh;
+    height: 100svh;
 }
 
 ::-webkit-scrollbar {
