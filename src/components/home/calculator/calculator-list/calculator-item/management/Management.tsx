@@ -4,12 +4,13 @@ import { CalculationContext, ICalculationContext } from 'provider/CalculationPro
 import { IEditMenuContext, EditMenuContext } from 'provider/EditMenuProvider'
 import { IconX, IconDots, IconSwitchVertical, IconScissors } from '@tabler/icons-react'
 import { Menu, Switch } from '@mantine/core'
-import getDefaultValue from 'utils/getDefaultValue'
+import defaultValue from 'utils/defaultValue'
 import { ICalculatorData } from 'interface'
 
 const ItemManagement: FC<{ id: number }> = ({ id }) => {
-    const { calculation_data, setCalculationData, INDEX_DATA } = useContext(CalculationContext) as ICalculationContext
+    const { calculation_data, setCalculationData, index } = useContext(CalculationContext) as ICalculationContext
     const { setListSelectedId, setMenuItemId, setListSelectedIndex } = useContext(EditMenuContext) as IEditMenuContext
+
     return (
         <div className={styles.wrapper}>
             {calculation_data.data[id].reverse && <IconSwitchVertical width={25} height={25} className={styles.option_icon} color="#40C057" />}
@@ -61,7 +62,7 @@ const ItemManagement: FC<{ id: number }> = ({ id }) => {
                         data: calculation_data.data.filter((_, i) => i !== id),
                     }
                     if (!update_calculation_data.data.length) {
-                        update_calculation_data.data.push(getDefaultValue(INDEX_DATA[0][0]))
+                        update_calculation_data.data.push(defaultValue(index!.data[0].short_name))
                         setCalculationData(update_calculation_data)
                         setMenuItemId(0)
                         setListSelectedId(0)

@@ -1,18 +1,17 @@
 import { useContext, useEffect, useState } from 'react'
 import { IEditMenuContext, EditMenuContext } from 'provider/EditMenuProvider'
 import { ICalculationContext, CalculationContext } from 'provider/CalculationProvider'
-// import { IconLink } from '@tabler/icons-react'
 
 import styles from './list-menu.module.css'
 
 type IListData = number[]
 
 const ListMenu = () => {
-    const { INDEX_DATA, GROUP_DATA } = useContext(CalculationContext) as ICalculationContext
-    const { list_selected_id, menu_item_copy, list_selected_index, setMenuItemCopy, setListSelectedId, group } = useContext(EditMenuContext) as IEditMenuContext
+    const { index } = useContext(CalculationContext) as ICalculationContext
 
+    const { list_selected_id, menu_item_copy, list_selected_index, setMenuItemCopy, setListSelectedId, group } = useContext(EditMenuContext) as IEditMenuContext
     const [list_data, setListData] = useState<IListData>([])
-    useEffect(() => (group >= 0 ? setListData(GROUP_DATA[group][1]) : setListData(INDEX_DATA.map((_, i) => i))), [group])
+    useEffect(() => (group >= 0 ? setListData(index!.group[group][1]) : setListData(index!.data.map((_, i) => i))), [group])
     return (
         <div className={styles.list_wrapper}>
             {list_data.map(id => (
@@ -25,8 +24,8 @@ const ListMenu = () => {
                         setListSelectedId(id)
                     }}
                 >
-                    <p className={styles.sec_code}>{INDEX_DATA[id][0]}</p>
-                    <p className={styles.full_name}>{INDEX_DATA[id][1]}</p>
+                    <p className={styles.full_name}>{index!.data[id].long_name}</p>
+                    <p className={styles.sec_code}>{index!.data[id].short_name}</p>
                 </div>
             ))}
         </div>

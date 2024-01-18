@@ -1,0 +1,22 @@
+.wrapper {
+    transition: 0.1s;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 4px;
+    padding: 6px 10px;
+    cursor: pointer;
+    background-color: #242529;
+}
+.name {
+    margin: 0 10px;
+}
+.wrapper:hover {
+    background-color: #2e3035;
+}
+.icon {
+    transition: 0.1s;
+}
+.icon_rotate {
+    transform: rotate(180deg);
+}

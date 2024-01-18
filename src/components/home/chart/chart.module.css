@@ -1,12 +1,30 @@
 .wrapper {
     padding: 6px;
-    padding-top: 3.5rem;
-    /* width: calc(100vw - 12px); */
-    height: 100vh;
+    height: 120px;
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: #141517;
+    transition: 0.3s ease-in-out;
+}
+.wrapper.active {
+    padding-top: 3.5rem;
+    width: 100%;
+    height: calc(100svh - 56px);
+}
+.link {
+    margin: 0 20px;
+    background-color: #4263eb;
+    width: 120px;
+    text-align: center;
+    padding: 8px 0;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 14px;
+    transition: 0.1s;
+}
+.link:hover {
+    transform: translateY(2px);
 }
 @media screen and (max-width: 1024px) {
     .wrapper {

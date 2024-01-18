@@ -3,11 +3,11 @@ import { IconPlus } from '@tabler/icons-react'
 import { useContext } from 'react'
 import { ICalculationContext, CalculationContext } from 'provider/CalculationProvider'
 import { EditMenuContext, IEditMenuContext } from 'provider/EditMenuProvider'
-import styles from 'components/calculator/calculator-list/calculator-item/data-calculator/data-calculator.module.css'
+import styles from 'components/home/calculator/calculator-list/calculator-item/data-calculator/data-calculator.module.css'
 import { useMediaQuery } from '@mantine/hooks'
 
 const EditDataCalculator = () => {
-    const { INDEX_DATA, ACTION_DATA } = useContext(CalculationContext) as ICalculationContext
+    const { index } = useContext(CalculationContext) as ICalculationContext
     const { menu_item_copy, list_selected_index, setListSelectedId, setListSelectedIndex, setMenuItemCopy } = useContext(EditMenuContext) as IEditMenuContext
     const media_query = useMediaQuery('(max-width:700px)')
     return (
@@ -21,15 +21,15 @@ const EditDataCalculator = () => {
                             setListSelectedIndex(id)
                         }}
                     >
-                        {Number.isFinite(item.id) && INDEX_DATA[item.id!][0]}
+                        {Number.isFinite(item.id) && index!.data[item.id!].short_name}
                     </div>
                     {item.action_id !== undefined && (
                         <Menu withArrow trigger="hover" shadow="md" closeDelay={200}>
                             <Menu.Target>
-                                <div className={styles.action}>{Number.isFinite(item.action_id) && ACTION_DATA[item.action_id!]}</div>
+                                <div className={styles.action}>{Number.isFinite(item.action_id) && index!.action[item.action_id!]}</div>
                             </Menu.Target>
                             <Menu.Dropdown>
-                                {ACTION_DATA.map((item, index) => (
+                                {index!.action.map((item, index) => (
                                     <Menu.Item
                                         key={index}
                                         onClick={() => {

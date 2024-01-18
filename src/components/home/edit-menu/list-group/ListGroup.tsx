@@ -3,7 +3,7 @@ import { useContext } from 'react'
 import { CalculationContext, ICalculationContext } from 'provider/CalculationProvider'
 import { EditMenuContext, IEditMenuContext } from 'provider/EditMenuProvider'
 const ListGroup = () => {
-    const { GROUP_DATA } = useContext(CalculationContext) as ICalculationContext
+    const { index } = useContext(CalculationContext) as ICalculationContext
     const { group, setGroup } = useContext(EditMenuContext) as IEditMenuContext
 
     return (
@@ -11,7 +11,7 @@ const ListGroup = () => {
             <div className={`${styles.group_item} ${group === -1 && styles.active}`} onClick={() => setGroup(-1)}>
                 Все
             </div>
-            {GROUP_DATA.map(([name], i) => (
+            {index!.group.map(([name], i) => (
                 <div key={i} className={`${styles.group_item} ${i === group && styles.active}`} onClick={() => setGroup(i)}>
                     {name}
                 </div>

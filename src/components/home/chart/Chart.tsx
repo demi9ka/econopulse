@@ -43,8 +43,18 @@ const Chart = () => {
     const [use_line, setUseLine] = useState(false)
     useEffect(() => setUseLine(calculation_data.type === 'roc'), [chart_data])
     return (
-        <div className={styles.wrapper}>
-            <Line options={use_line ? options_with_line : options} data={chart_data} />
+        <div className={`${styles.wrapper} ${chart_data && styles.active}`}>
+            {chart_data ? (
+                <Line options={use_line ? options_with_line : options} data={chart_data} />
+            ) : (
+                <p style={{ display: 'flex', alignItems: 'center', opacity: 0.8 }}>
+                    Нажмите
+                    <a href="#button_generate" className={styles.link}>
+                        Генерация
+                    </a>
+                    чтобы загрузить график
+                </p>
+            )}
         </div>
     )
 }

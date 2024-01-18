@@ -1,6 +1,6 @@
-import { createContext, useState, FC, ReactNode, useContext, useEffect } from 'react'
+import { createContext, useState, FC, ReactNode, useContext } from 'react'
 import { CalculationContext, ICalculationContext } from 'provider/CalculationProvider'
-import getChartData from 'services/getChartData'
+import chartData from 'services/chartData'
 import { IChartData } from 'interface'
 
 export interface IChartDataContext {
@@ -12,25 +12,21 @@ export interface IChartDataContext {
 
 const ChartDataContext = createContext<IChartDataContext | null>(null)
 
-const default_data: IChartData = {
-    datasets: [],
-    labels: [],
-}
+const default_data: IChartData = null
 const ChartDataProvider: FC<{ children: ReactNode }> = ({ children }) => {
-    const { calculation_data } = useContext(CalculationContext) as ICalculationContext
     const [chart_data, setChartData] = useState<IChartData>(default_data)
     const [use_line, setUseLine] = useState<boolean>(false)
-
-    useEffect(() => {
-        const Fun = async () => {
-            if (calculation_data.data.length) {
-                setChartData(await getChartData(calculation_data))
-                setUseLine(calculation_data.type === 'roc')
-            }
-        }
-        Fun()
-    }, [])
     return <ChartDataContext.Provider value={{ chart_data, setChartData, use_line, setUseLine }}>{children}</ChartDataContext.Provider>
 }
 
 export { ChartDataProvider, ChartDataContext }
+
+// useEffect(() => {
+//     const Fun = async () => {
+//         if (calculation_data.data.length) {
+//             setChartData(await getChartData(calculation_data))
+//             setUseLine(calculation_data.type === 'roc')
+//         }
+//     }
+//     Fun()
+// }, [])
