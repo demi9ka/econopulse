@@ -4,7 +4,7 @@ import { FC, useState, useContext } from 'react'
 import { Menu } from '@mantine/core'
 import { IconChevronDown, IconLogout2, IconSettings, IconUserCircle, IconUser } from '@tabler/icons-react'
 import { UserDataContext, IUserDataContext } from 'provider/UserProvider'
-import { redirect, useNavigate } from 'react-router-dom'
+import {  useNavigate } from 'react-router-dom'
 
 const HeaderProfile: FC<{ data: IUserData }> = ({ data }) => {
     const navigate = useNavigate()

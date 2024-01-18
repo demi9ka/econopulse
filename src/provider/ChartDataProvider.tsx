@@ -1,6 +1,4 @@
-import { createContext, useState, FC, ReactNode, useContext } from 'react'
-import { CalculationContext, ICalculationContext } from 'provider/CalculationProvider'
-import chartData from 'services/chartData'
+import { createContext, useState, FC, ReactNode } from 'react'
 import { IChartData } from 'interface'
 
 export interface IChartDataContext {
