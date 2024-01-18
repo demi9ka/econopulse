@@ -1,28 +1,22 @@
-import { createContext, useState, FC, ReactNode, useEffect } from 'react'
-import { ICalculatorData } from 'interface'
-import getIndexData from 'utils/getIndexData'
-import getDefaultValue from 'utils/getDefaultValue'
+import { createContext, useState, FC, ReactNode, useEffect, useContext } from 'react'
+import { ICalculatorData, IIndex } from 'interface'
+import getDefaultValue from 'utils/defaultValue'
+import indexData from 'services/indexData'
+import { ErrorContext, IErrorContext } from 'provider/ErrorProvider'
 
 export interface ICalculationContext {
     calculation_data: ICalculatorData
     setCalculationData: React.Dispatch<React.SetStateAction<ICalculatorData>>
-    INDEX_DATA: [string, string][]
-    ACTION_DATA: string[]
-    GROUP_DATA: [string, number[]][]
+    index: IIndex
+    loadIndexData: () => Promise<void>
 }
 
 const CalculationContext = createContext<ICalculationContext | null>(null)
 
 const CalculationProvider: FC<{ children: ReactNode }> = ({ children }) => {
-    useEffect(() => {
-        const F = async () => {
-            const res = await getIndexData()
-            setData(res)
-        }
-        F()
-    }, [])
     const local_data_buffer = JSON.parse(localStorage.getItem('calculation_data')!)
-    const [data, setData] = useState<[[string, string][], string[], [string, number[]][]]>([[], [], []])
+    const [index, setIndex] = useState<ICalculationContext['index']>(undefined)
+    const { setErrorData } = useContext(ErrorContext) as IErrorContext
     const [calculation_data, setCalculationData] = useState<ICalculatorData>(
         local_data_buffer || {
             crop_id: null,
@@ -30,9 +24,41 @@ const CalculationProvider: FC<{ children: ReactNode }> = ({ children }) => {
             type: null,
         }
     )
+    const loadIndexData = async () => {
+        try {
+            const res = await indexData()
+            setIndex({ ...res.data, action: ['+', '-', '*', '/'] })
+        } catch (e: any) {
+            setIndex(null)
+
+            setErrorData(prev => [
+                ...prev,
+                {
+                    content: (
+                        <p>
+                            {typeof e === 'string' ? e : 'Сервис временно недоступен'}
+                            <span
+                                className="error_link"
+                                onClick={() => {
+                                    setErrorData(prev => prev.filter((_, i) => i !== prev.length - 1))
+                                    loadIndexData()
+                                }}
+                            >
+                                {' '}
+                                Попробывать ещё раз
+                            </span>
+                        </p>
+                    ),
+                },
+            ])
+        }
+    }
+    useEffect(() => {
+        loadIndexData()
+    }, [])
     useEffect(() => localStorage.setItem('calculation_data', JSON.stringify(calculation_data)), [calculation_data])
 
-    return <CalculationContext.Provider value={{ calculation_data, setCalculationData, INDEX_DATA: data[0], ACTION_DATA: data[1], GROUP_DATA: data[2] }}>{children}</CalculationContext.Provider>
+    return <CalculationContext.Provider value={{ calculation_data, setCalculationData, index, loadIndexData }}>{children}</CalculationContext.Provider>
 }
 
 export { CalculationProvider, CalculationContext }

@@ -1,21 +1,33 @@
 .header {
-    padding: 5px 10px;
-    display: flex;
-    height: 3.5rem;
-    align-items: center;
+    width: 100%;
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
     right: 0;
     background-color: #1a1b1e;
-    justify-content: space-between;
+    z-index: 1;
 }
-.header div {
+.wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.content {
+    padding: 5px 10px;
+    height: 3.5rem;
+    width: 100%;
+    max-width: 1920px;
     display: flex;
     align-items: center;
+    justify-content: space-between;
 }
-.header div h2 {
+.poster {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    cursor: pointer;
+}
+.poster h2 {
     font-size: 25px;
     font-weight: 500;
 }
@@ -26,11 +38,26 @@
     margin-right: 5px;
     height: 37px;
 }
+.auth {
+    font-size: 15px;
+    padding: 8px 20px;
+    text-align: center;
+    border-radius: 4px;
+    text-decoration: none;
+}
+.login {
+    background-color: #845ef7;
+}
+.register {
+    margin: 0 10px;
+    background-color: #323438;
+}
+.auth:hover {
+    opacity: 0.9;
+}
 @media screen and (max-width: 550px) {
     .header {
-        height: 2.5rem;
-        padding: 10px 0;
-        justify-content: center;
+        padding: 10px;
     }
     .header div h2 {
         font-size: 20px;
