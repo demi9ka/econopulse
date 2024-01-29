@@ -9,7 +9,8 @@ import { IChartDataContext, ChartDataContext } from 'provider/ChartDataProvider'
 import { useMediaQuery } from '@mantine/hooks'
 import { useNavigate } from 'react-router-dom'
 import { IUserDataContext, UserDataContext } from 'provider/UserProvider'
-import { IconHexagonLetterR, IconArrowsExchange, IconCheck, IconCircleOff, IconBookmark, IconDownload, IconUpload, IconChevronDown } from '@tabler/icons-react'
+import { IconHexagonLetterR, IconArrowsExchange, IconCheck, IconCircleOff, IconChevronDown, IconChartDots3 } from '@tabler/icons-react'
+import { IFavoriteMenuContext, FavoriteMenuContext } from 'provider/FavoriteProvider'
 
 const type_data = {
     roc: ['ROC', <IconHexagonLetterR color="#7950F2" style={{ margin: '0 8px' }} width={20} />],
@@ -24,6 +25,7 @@ const Calculator = () => {
     const { setChartData } = useContext(ChartDataContext) as IChartDataContext
     const media_query = useMediaQuery('(max-width: 550px)')
     const [disabled, setDisabled] = useState(false)
+    const { setViewModal } = useContext(FavoriteMenuContext) as IFavoriteMenuContext
 
     useEffect(() => {
         if (index) setDisabled(false)
@@ -34,27 +36,18 @@ const Calculator = () => {
         <div className={styles.wrapper}>
             <div className={styles.content}>
                 <div className={styles.header}>
-                    <div className={styles.header}>
-                        <Menu withArrow shadow="md" position="bottom-start">
-                            <Menu.Target>
-                                <Button rightSection={<IconChevronDown width={14} />} px={10} py={0} bg={'#25262b'} title="Закладки" ml={15}>
-                                    <IconBookmark color="#FCC419" width={20} />
-                                </Button>
-                            </Menu.Target>
-                            <Menu.Dropdown>
-                                <Menu.Item p={6} leftSection={<IconDownload width={17} />}>
-                                    Имопрт
-                                </Menu.Item>
-                                <Menu.Item p={6} leftSection={<IconUpload width={17} />}>
-                                    Сохранить
-                                </Menu.Item>
-                            </Menu.Dropdown>
-                        </Menu>
-                    </div>
+                    <div></div>
                     <div>
+                        {user_data && (
+                            <Button fw={'normal'} px={10} py={0} bg={'#f59f0040'} className={styles.favorite} onClick={() => setViewModal(true)}>
+                                <span style={{ marginRight: '10px' }}>Избранное</span>
+                                <IconChartDots3 color="#FCC419" width={20} />
+                            </Button>
+                        )}
+
                         <Menu position="bottom-end" withArrow shadow="md" width={200}>
                             <Menu.Target>
-                                <Button fw={'normal'} bg={'#25262b'} rightSection={<IconChevronDown width={14} />}>
+                                <Button fw={'normal'} mx={15} bg={'#25262b'} rightSection={<IconChevronDown width={14} />}>
                                     {calculation_data.type && (
                                         <>
                                             {type_data[calculation_data.type][0]}
@@ -100,7 +93,6 @@ const Calculator = () => {
                         </Menu>
                         <Button
                             id="button_generate"
-                            ml={20}
                             bg={'#4263EB'}
                             fw={400}
                             w={120}

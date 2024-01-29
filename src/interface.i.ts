@@ -3,6 +3,20 @@ export type ICalculatorData = {
     type: null | 'roc' | 'overlay'
     data: ICalculatorItem[]
 }
+export interface ICalculatorFavoriteData {
+    crop_id: number | null
+    type: null | 'roc' | 'overlay'
+    data: Omit<ICalculatorItem, 'color' | 'name'>[]
+}
+export interface IFavoriteItem {
+    id: number
+    name: string
+    data: ICalculatorFavoriteData
+    create_date: Date
+}
+export type IFavoriteData = IFavoriteItem[] | null | undefined
+//undefined - загрузка
+//null - ошибка загрузки
 
 export interface ICalculatorItem {
     data: { id: number | null; action_id: number | null | undefined }[]

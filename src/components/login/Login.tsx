@@ -31,7 +31,7 @@ const Login = () => {
             return navigate('/')
         } catch (e: any) {
             setWaitRes(false)
-            setError(e)
+            setError(typeof e === 'string' ? e : 'Сервис не доступен')
         }
     }
     return (
