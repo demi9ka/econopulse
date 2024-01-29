@@ -1,12 +1,17 @@
 export type ICalculatorData = {
     crop_id: number | null
     type: null | 'roc' | 'overlay'
+    data: ICalculatorItem[]
+}
+export interface ICalculatorFavoriteData {
+    crop_id: number | null
+    type: null | 'roc' | 'overlay'
     data: Omit<ICalculatorItem, 'color' | 'name'>[]
 }
 export interface IFavoriteItem {
     id: number
     name: string
-    data: ICalculatorData
+    data: ICalculatorFavoriteData
     create_date: Date
 }
 export type IFavoriteData = IFavoriteItem[] | null | undefined
