@@ -1,0 +1,65 @@
+.wrapper {
+    background-color: #ffffff15;
+    border: 1px solid #b588ff49;
+    border-radius: 4px;
+    padding: 5px;
+    transition: 0.3s;
+}
+.wrapper.already {
+    background-color: #fffc2f1f;
+    border: 1px solid #f4f81a57;
+    font-size: 14px;
+    font-weight: 300;
+}
+.title {
+    font-size: 15px;
+    font-weight: 300;
+    margin-left: 2px;
+    margin-bottom: 8px;
+}
+.wrapper form {
+    display: flex;
+}
+.name_input {
+    flex-grow: 2;
+    padding: 4px 6px;
+    font-size: 15px;
+    font-family: 'Noto Sans', sans-serif;
+    background-color: #1a1a1a;
+    margin-right: 4px;
+    border-radius: 4px;
+}
+.submit_btn {
+    font-size: 13px;
+    border-radius: 4px;
+    /* padding: 10px; */
+    width: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    background-color: #7950f2;
+    transition: 0.2s;
+}
+.submit_btn:disabled {
+    opacity: 0.6;
+    pointer-events: none;
+}
+.submit_btn:hover {
+    background-color: #6839f5;
+}
+
+.create_confirm {
+    opacity: 0.7;
+    cursor: pointer;
+}
+.create_confirm:hover {
+    opacity: 0.9;
+    text-decoration: underline;
+}
+.error {
+    font-size: 14px;
+    color: #e24242;
+    margin-left: 2px;
+    font-weight: normal;
+}

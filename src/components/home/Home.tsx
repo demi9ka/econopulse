@@ -3,6 +3,8 @@ import Calculator from './calculator/Calculator'
 import Chart from './chart/Chart'
 import EditMenu from './edit-menu/EditMenu'
 import AppError from './app-error/AppError'
+import { FavoriteMenuProvider } from 'provider/FavoriteProvider'
+import FavoriteMenu from './favorite-menu/FavoriteMenu'
 
 const HomePage = () => {
     return (
@@ -10,8 +12,11 @@ const HomePage = () => {
             <AppError />
             <Chart />
             <EditMenuProvider>
-                <Calculator />
-                <EditMenu />
+                <FavoriteMenuProvider>
+                    <Calculator />
+                    <EditMenu />
+                    <FavoriteMenu />
+                </FavoriteMenuProvider>
             </EditMenuProvider>
         </>
     )
