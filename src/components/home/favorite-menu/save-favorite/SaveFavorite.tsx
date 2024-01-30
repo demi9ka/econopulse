@@ -25,7 +25,7 @@ const SaveFavorite = () => {
             const res = await createFavorite(name, calculation_data)
             if (res.status == 201) {
                 res.data.data = JSON.parse(res.data.data)
-                setFavoriteData(prev => [...prev!, { ...res.data, create_date: new Date(res.data.create_date) }])
+                setFavoriteData(prev => [...prev!, { ...res.data }])
                 setName('')
             } else throw false
         } catch (e: any) {
