@@ -37,7 +37,7 @@ const FavoriteMenuProvider: FC<{ children: ReactNode }> = ({ children }) => {
                                 return elem
                             })
 
-                            return { ...item, create_date: new Date(item.create_date) }
+                            return { ...item }
                         })
                     )
                 }

@@ -12,7 +12,6 @@ export interface IFavoriteItem {
     id: number
     name: string
     data: ICalculatorFavoriteData
-    create_date: Date
 }
 export type IFavoriteData = IFavoriteItem[] | null | undefined
 //undefined - загрузка
