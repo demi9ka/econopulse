@@ -8,11 +8,13 @@
     font-size: 17px;
     font-weight: normal;
 }
+.content_wrapper {
+    flex-grow: 2;
+    overflow-y: auto;
+}
 .favorite_wrapper {
     margin: 10px 0;
     width: 100%;
-    overflow-y: auto;
-    flex-grow: 2;
 }
 .favorite_wrapper::-webkit-scrollbar {
     width: 0;
@@ -32,6 +34,23 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.clear_cache {
+    font-size: 14px;
+    color: #b1b1b1;
+    cursor: pointer;
+}
+.clear_cache:hover {
+    text-decoration: underline;
+    opacity: 0.8;
+}
+.recovery {
+    color: #b1b1b1;
+    font-size: 14px;
+}
+.recovery:hover {
+    text-decoration: underline;
+    color: #c5c5c5;
 }
 .confirm_btn {
     width: 100%;

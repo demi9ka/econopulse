@@ -26,13 +26,12 @@
 .submit_btn {
     font-size: 13px;
     border-radius: 4px;
-    /* padding: 10px; */
-    width: 50px;
+    padding: 2px 15px;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    background-color: #7950f2;
+    background-color: #7350f2;
     transition: 0.2s;
 }
 .submit_btn:disabled {
