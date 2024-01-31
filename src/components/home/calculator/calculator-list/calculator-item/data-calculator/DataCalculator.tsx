@@ -18,7 +18,7 @@ const DataCalculator: FC<{ id: number }> = ({ id }) => {
             {calculation_data.data[id].data.map((item, id) => (
                 <div key={id} className={styles.item_wrapper}>
                     <div title={index!.data[item.id!].long_name} className={styles.item}>
-                        {Number.isFinite(item.id) ? index!.data[item.id!].short_name : ''}
+                        {Number.isFinite(item.id) ? index!.data.find(el => el.id === item.id!)!.short_name : ''}
                     </div>
                     {item.action_id === undefined ? '' : <div className={styles.action}>{Number.isFinite(item.action_id) ? index!.action[item.action_id!][0] : ''}</div>}
                 </div>

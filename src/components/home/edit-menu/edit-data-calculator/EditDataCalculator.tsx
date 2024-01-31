@@ -21,7 +21,7 @@ const EditDataCalculator = () => {
                             setListSelectedIndex(id)
                         }}
                     >
-                        {Number.isFinite(item.id) && index!.data[item.id!].short_name}
+                        {Number.isFinite(item.id) && index!.data.find(el => el.id === item.id!)!.short_name}
                     </div>
                     {item.action_id !== undefined && (
                         <Menu withArrow trigger="hover" shadow="md" closeDelay={200}>
