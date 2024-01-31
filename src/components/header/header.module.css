@@ -38,6 +38,10 @@
     margin-right: 5px;
     height: 37px;
 }
+.prefix {
+    font-size: 18px;
+    color: #845ef7;
+}
 .auth {
     font-size: 15px;
     padding: 8px 20px;

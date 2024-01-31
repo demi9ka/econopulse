@@ -11,7 +11,9 @@ const Header = () => {
                 <div className={styles.content}>
                     <Link className={styles.poster} to={'/'}>
                         <img className={styles.logo} src="/logo.svg" alt="" />
-                        <h2>Econopulse.ru</h2>
+                        <h2>
+                            Econopulse<span className={styles.prefix}>.ru</span>{' '}
+                        </h2>
                     </Link>
                     <div>
                         {user_data === null && (
