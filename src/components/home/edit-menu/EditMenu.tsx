@@ -30,7 +30,7 @@ const EditMenu = () => {
             </div>
         )
     return (
-        <Modal size={620} p={10} opened={!!menu_item_copy} onClose={() => setMenuItemId(null)} title="Редактор данных графа" centered>
+        <Modal size={620} p={10} opened={!!menu_item_copy} onClose={() => setMenuItemId(null)} title="Редактор графика" centered>
             {menu_item_copy && (
                 <div className={styles.content}>
                     <EditDataCalculator />

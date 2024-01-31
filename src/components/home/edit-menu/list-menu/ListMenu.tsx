@@ -12,14 +12,13 @@ const ListMenu = () => {
     const { list_selected_id, menu_item_copy, list_selected_index, setMenuItemCopy, setListSelectedId, group } = useContext(EditMenuContext) as IEditMenuContext
     const [list_data, setListData] = useState<IListData>([])
     useEffect(() => (group >= 0 ? setListData(index!.group[group][1]) : setListData(index!.data.map(el => el.id))), [group])
-    console.log(list_data)
 
     return (
         <div className={styles.list_wrapper}>
             {list_data.map(id => (
                 <div
                     key={id}
-                    className={`${styles.list_item} ${list_selected_id === id && styles.list_item__active}`}
+                    className={`${styles.item} ${list_selected_id === id && styles.active}`}
                     onClick={() => {
                         menu_item_copy!.data[list_selected_index!].id = id
                         setMenuItemCopy(menu_item_copy!)

@@ -82,8 +82,7 @@
 .item {
     overflow: hidden;
     width: 100%;
-    background-color: #1f1f1f;
-    border: 1px solid #444444;
+    border: 1px solid #555555;
     padding: 5px 10px;
     border-radius: 4px;
     font-size: 15px;
@@ -93,6 +92,10 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+.item.active {
+    border: 1px solid #885bbd;
+    border-left: 4px solid #885bbd;
 }
 .name {
     margin: 0 5px;
@@ -115,14 +118,4 @@
 }
 .item.active .delete:hover {
     opacity: 0.7;
-}
-.item:hover {
-    border: 1px solid #575757;
-}
-.item.active {
-    border: 1px solid #6937a1;
-    background-color: #2d2433;
-}
-.item.active:hover {
-    border: 1px solid #6937a1;
 }
