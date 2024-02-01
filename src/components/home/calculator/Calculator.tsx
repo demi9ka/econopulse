@@ -117,7 +117,7 @@ const Calculator = () => {
                         </Button>
                     </div>
                 </div>
-                {<CalculationList />}
+                <CalculationList />
             </div>
         </div>
     )
