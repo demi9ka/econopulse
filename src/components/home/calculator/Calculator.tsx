@@ -36,7 +36,6 @@ const Calculator = () => {
         <div className={styles.wrapper}>
             <div className={styles.content}>
                 <div className={styles.header}>
-                    <div></div>
                     <div>
                         {user_data && (
                             <Button fw={'normal'} px={10} py={0} bg={'#f59f0040'} className={styles.favorite} onClick={() => setViewModal(true)}>
@@ -44,7 +43,8 @@ const Calculator = () => {
                                 <IconChartDots3 color="#FCC419" width={20} />
                             </Button>
                         )}
-
+                    </div>
+                    <div>
                         <Menu position="bottom-end" withArrow shadow="md" width={200}>
                             <Menu.Target>
                                 <Button fw={'normal'} mx={15} bg={'#25262b'} rightSection={<IconChevronDown width={14} />}>
