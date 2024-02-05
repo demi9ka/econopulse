@@ -23,6 +23,15 @@
 .set_chart_type {
     width: 100%;
 }
+.update_date {
+    display: flex;
+    align-items: center;
+}
+.update_date p {
+    margin-left: 5px;
+    font-size: 14px;
+    opacity: 0.8;
+}
 @media screen and (max-width: 550px) {
     .title {
         font-size: 17px;

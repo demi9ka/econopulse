@@ -9,8 +9,9 @@ import { IChartDataContext, ChartDataContext } from 'provider/ChartDataProvider'
 import { useMediaQuery } from '@mantine/hooks'
 import { useNavigate } from 'react-router-dom'
 import { IUserDataContext, UserDataContext } from 'provider/UserProvider'
-import { IconHexagonLetterR, IconArrowsExchange, IconCheck, IconCircleOff, IconChevronDown, IconChartDots3 } from '@tabler/icons-react'
+import { IconHexagonLetterR, IconArrowsExchange, IconCheck, IconCircleOff, IconChevronDown, IconChartDots3, IconCircleCheckFilled, IconCircleCheck } from '@tabler/icons-react'
 import { IFavoriteMenuContext, FavoriteMenuContext } from 'provider/FavoriteProvider'
+import { updateDate } from 'services/indexData'
 
 const type_data = {
     roc: ['ROC', <IconHexagonLetterR color="#7950F2" style={{ margin: '0 8px' }} width={20} />],
@@ -26,11 +27,31 @@ const Calculator = () => {
     const media_query = useMediaQuery('(max-width: 550px)')
     const [disabled, setDisabled] = useState(false)
     const { setViewModal } = useContext(FavoriteMenuContext) as IFavoriteMenuContext
-
+    const [update_date, setUpdateDate] = useState<Date | null>(null)
+    const [update_date_string, setUpdateDateString] = useState<string>('')
     useEffect(() => {
         if (index) setDisabled(false)
         else setDisabled(true)
     }, [index])
+
+    useEffect(() => {
+        const F = async () => {
+            const res = await updateDate()
+            if (res.status !== 200) return
+            const update_date_res = new Date(res.data.date)
+            setUpdateDate(update_date_res)
+        }
+        F()
+    }, [])
+
+    useEffect(() => {
+        if (!update_date) return
+        const current_date = new Date()
+        let delta = (current_date.getTime() - update_date.getTime()) / 1000 / 60
+        if (delta < 60) setUpdateDateString(`${delta.toFixed(0)}мин`)
+        else if (delta < 1440) setUpdateDateString(`${(delta / 60).toFixed(0)}ч`)
+        else setUpdateDateString(`${(delta / 1440).toFixed(0)}дн`)
+    }, [update_date])
 
     return (
         <div className={styles.wrapper}>
@@ -44,7 +65,14 @@ const Calculator = () => {
                             </Button>
                         )}
                     </div>
-                    <div>
+                    <div style={{ display: 'flex', alignItems: 'center' }}>
+                        {update_date && (
+                            <div className={styles.update_date} title="Обновление графиков">
+                                <IconCircleCheck color="#94D82D" />
+                                <p>{update_date_string} </p>
+                            </div>
+                        )}
+
                         <Menu position="bottom-end" withArrow shadow="md" width={200}>
                             <Menu.Target>
                                 <Button fw={'normal'} mx={15} bg={'#25262b'} rightSection={<IconChevronDown width={14} />}>

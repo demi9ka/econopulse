@@ -1,7 +1,7 @@
 import { createContext, useState, FC, ReactNode, useEffect, useContext } from 'react'
 import { ICalculatorData, IIndex } from 'interface'
 import getDefaultValue from 'utils/defaultValue'
-import indexData from 'services/indexData'
+import { indexData } from 'services/indexData'
 import { ErrorContext, IErrorContext } from 'provider/ErrorProvider'
 
 export interface ICalculationContext {
