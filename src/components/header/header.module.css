@@ -21,6 +21,10 @@
     align-items: center;
     justify-content: space-between;
 }
+.nav {
+    display: flex;
+    align-items: center;
+}
 .poster {
     display: flex;
     align-items: center;
@@ -33,10 +37,10 @@
 }
 .logo {
     pointer-events: none;
-    width: 37px;
     border-radius: 4px;
     margin-right: 5px;
     height: 37px;
+    width: 37px;
 }
 .prefix {
     font-size: 18px;
@@ -44,7 +48,7 @@
 }
 .auth {
     font-size: 15px;
-    padding: 8px 20px;
+    padding: 5px 20px;
     text-align: center;
     border-radius: 4px;
     text-decoration: none;
@@ -59,6 +63,38 @@
 .auth:hover {
     opacity: 0.9;
 }
+.tg_link {
+    padding: 6px 12px;
+    border-radius: 4px;
+    transition: 0.2s;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #5ea0f757;
+    border: 1px solid #5ea0f77a;
+}
+.tg_link:hover {
+    color: #c4b1fa;
+    background-color: #388af5c5;
+}
+/* .nav_link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 3px;
+    opacity: 0;
+    bottom: -5px;
+    left: 0;
+    border-radius: 4px;
+    background-color: #845ef7;
+    transition: 0.2s ease-in-out;
+    z-index: -1;
+}
+.nav_link:hover::after {
+    width: 100%;
+    opacity: 1;
+} */
 @media screen and (max-width: 550px) {
     .header {
         padding: 10px;
