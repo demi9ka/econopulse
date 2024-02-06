@@ -39,7 +39,7 @@ const Login = () => {
             <form className={styles.form} onSubmit={login}>
                 <div>
                     <h2 className={styles.title}>Вход</h2>
-                    <input autoComplete="off" required className={styles.form_input} type="text" placeholder="Почта" name="email" />
+                    <input autoComplete="off" required className={styles.form_input} type="text" placeholder="Имя пользователя" name="name" />
                     <label htmlFor="login_password_input" className={styles.pass_input_wrapper}>
                         <input autoComplete="off" id="login_password_input" required className={`${styles.form_input} ${styles.pass_input}`} type={p_type ? 'text' : 'password'} placeholder="Пароль" name="password" />
                         <div className={styles.view_password} onClick={() => setPType(!p_type)}>

@@ -9,7 +9,7 @@ import { IChartDataContext, ChartDataContext } from 'provider/ChartDataProvider'
 import { useMediaQuery } from '@mantine/hooks'
 import { useNavigate } from 'react-router-dom'
 import { IUserDataContext, UserDataContext } from 'provider/UserProvider'
-import { IconHexagonLetterR, IconArrowsExchange, IconCheck, IconCircleOff, IconChevronDown, IconChartDots3, IconCircleCheckFilled, IconCircleCheck } from '@tabler/icons-react'
+import { IconHexagonLetterR, IconArrowsExchange, IconCheck, IconCircleOff, IconChevronDown, IconChartDots3, IconCircleCheck } from '@tabler/icons-react'
 import { IFavoriteMenuContext, FavoriteMenuContext } from 'provider/FavoriteProvider'
 import { updateDate } from 'services/indexData'
 

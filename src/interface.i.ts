@@ -34,7 +34,6 @@ export type IChartData = {
 export type IUserData =
     | {
           name: string
-          email: string
           register_date: Date
       }
     | null
