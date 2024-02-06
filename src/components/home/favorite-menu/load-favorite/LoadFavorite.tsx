@@ -55,7 +55,6 @@ const LoadFavorite = () => {
             setActionState(prev => [...prev, id])
             const res = await createFavorite(name, data.data as any)
             if (res.status == 201) {
-                res.data.data = JSON.parse(res.data.data)
                 setFavoriteData(prev => [...prev!, { ...res.data }])
                 setCacheData(prev => prev.filter(el => el.id !== id))
             } else throw false
