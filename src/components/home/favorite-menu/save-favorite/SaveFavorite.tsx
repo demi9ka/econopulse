@@ -24,7 +24,6 @@ const SaveFavorite = () => {
             setReqProccess(true)
             const res = await createFavorite(name, calculation_data)
             if (res.status == 201) {
-                res.data.data = JSON.parse(res.data.data)
                 setFavoriteData(prev => [...prev!, { ...res.data }])
                 setName('')
             } else throw false

@@ -21,7 +21,7 @@ const Header = () => {
                     </div>
                     <div className={styles.nav}>
                         <a className={styles.tg_link} target="_blank" href="https://t.me/econopulse_ru">
-                            <IconBrandTelegram size={20} />
+                            <IconBrandTelegram color="#5fa2fa" size={20} />
                         </a>
                         {user_data === null && (
                             <>
