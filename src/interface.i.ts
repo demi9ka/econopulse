@@ -1,29 +1,31 @@
-export type ICalculatorData = {
+export type IStructure = {
     crop_id: number | null
     type: null | 'roc' | 'overlay'
-    data: ICalculatorItem[]
+    data: IModel[]
 }
-export interface ICalculatorFavoriteData {
+
+export interface IStructureFavorite {
     crop_id: number | null
     type: null | 'roc' | 'overlay'
-    data: Omit<ICalculatorItem, 'color' | 'name'>[]
+    data: Omit<IModel, 'color' | 'name'>[]
 }
 export interface IFavoriteItem {
     id: number
     name: string
-    data: ICalculatorFavoriteData
+    data: IStructureFavorite
 }
-export type IFavoriteData = IFavoriteItem[] | null | undefined
+export type IFavorite = IFavoriteItem[] | null | undefined
 //undefined - загрузка
 //null - ошибка загрузки
 
-export interface ICalculatorItem {
-    data: { id: number | null; action_id: number | null | undefined }[]
+export interface IModel {
+    data: string
     color: string
     name: string
     reverse: boolean
 }
-export type IChartData = {
+
+export type IChart = {
     labels: string[]
     datasets: {
         label: string
@@ -31,7 +33,7 @@ export type IChartData = {
         borderColor: string
     }[]
 } | null
-export type IUserData =
+export type IUser =
     | {
           name: string
           register_date: Date

@@ -1,49 +1,38 @@
-import { IFavoriteData, IFavoriteItem } from 'interface'
+import { IFavorite, IFavoriteItem } from 'interface'
 import { createContext, useState, FC, ReactNode, useEffect, useContext } from 'react'
 import { IErrorContext, ErrorContext } from 'provider/ErrorProvider'
 import { getFavorite } from 'services/favorite'
-import { UserDataContext, IUserDataContext } from 'provider/UserProvider'
+import { UserContext, IUserContext } from 'provider/UserProvider'
 
-type ICacheData = IFavoriteItem[]
+type ICache = IFavoriteItem[]
 
-export interface IFavoriteMenuContext {
-    view_modal: boolean
-    favorite_data: IFavoriteData
-    cache_data: ICacheData
-    setViewModal: React.Dispatch<React.SetStateAction<boolean>>
-
-    setFavoriteData: React.Dispatch<React.SetStateAction<IFavoriteData>>
-    setCacheData: React.Dispatch<React.SetStateAction<ICacheData>>
+export interface IFavoriteContext {
+    opened: boolean
+    favorite: IFavorite
+    cache: ICache
+    setOpened: React.Dispatch<React.SetStateAction<boolean>>
+    setFavorite: React.Dispatch<React.SetStateAction<IFavorite>>
+    setCache: React.Dispatch<React.SetStateAction<ICache>>
 }
 
-const FavoriteMenuContext = createContext<IFavoriteMenuContext | null>(null)
-const FavoriteMenuProvider: FC<{ children: ReactNode }> = ({ children }) => {
-    const [view_modal, setViewModal] = useState(false)
-    const { user_data } = useContext(UserDataContext) as IUserDataContext
-
-    const { setErrorData } = useContext(ErrorContext) as IErrorContext
-    const [favorite_data, setFavoriteData] = useState<IFavoriteData>(undefined)
-    const [cache_data, setCacheData] = useState<ICacheData>([])
+const FavoriteContext = createContext<IFavoriteContext | null>(null)
+const FavoriteProvider: FC<{ children: ReactNode }> = ({ children }) => {
+    const [opened, setOpened] = useState(false)
+    const { user } = useContext(UserContext) as IUserContext
+    const { setError } = useContext(ErrorContext) as IErrorContext
+    const [favorite, setFavorite] = useState<IFavorite>(undefined)
+    const [cache, setCache] = useState<ICache>([])
     useEffect(() => {
         const F = async () => {
-            if (!user_data) return
+            if (!user) return
             try {
                 const res = await getFavorite()
                 if (res.status == 200) {
-                    setFavoriteData(
-                        res.data.map((item: IFavoriteItem) => {
-                            item.data.data = item.data.data.map(elem => {
-                                elem.data[elem.data.length - 1].action_id = undefined
-                                return elem
-                            })
-
-                            return { ...item }
-                        })
-                    )
+                    setFavorite(res.data)
                 }
             } catch (e: any) {
-                setFavoriteData(null)
-                setErrorData(prev => [
+                setFavorite(null)
+                setError(prev => [
                     ...prev,
                     {
                         content: (
@@ -54,8 +43,8 @@ const FavoriteMenuProvider: FC<{ children: ReactNode }> = ({ children }) => {
                                         <span
                                             className="error_link"
                                             onClick={() => {
-                                                setFavoriteData(undefined)
-                                                setErrorData(prev => prev.filter((_, i) => i !== prev.length - 1))
+                                                setFavorite(undefined)
+                                                setError(prev => prev.filter((_, i) => i !== prev.length - 1))
                                                 F()
                                             }}
                                         >
@@ -72,9 +61,9 @@ const FavoriteMenuProvider: FC<{ children: ReactNode }> = ({ children }) => {
             }
         }
         F()
-    }, [user_data])
+    }, [user])
 
-    return <FavoriteMenuContext.Provider value={{ view_modal, setViewModal, favorite_data, setFavoriteData, cache_data, setCacheData }}>{children}</FavoriteMenuContext.Provider>
+    return <FavoriteContext.Provider value={{ opened, setOpened, favorite, setFavorite, cache, setCache }}>{children}</FavoriteContext.Provider>
 }
 
-export { FavoriteMenuProvider, FavoriteMenuContext }
+export { FavoriteProvider, FavoriteContext }

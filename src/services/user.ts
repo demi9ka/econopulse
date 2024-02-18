@@ -1,8 +1,8 @@
 import { AxiosResponse } from 'axios'
 import axios from './axios'
 
-type IFormData = Record<string, any>
-export const postLogin = async (form_data: IFormData): Promise<AxiosResponse> => {
+type IForm = Record<string, any>
+export const postLogin = async (form_data: IForm): Promise<AxiosResponse> => {
     try {
         const res = await axios.post('/api/user/login', form_data)
         return res
@@ -10,7 +10,7 @@ export const postLogin = async (form_data: IFormData): Promise<AxiosResponse> =>
         throw e.response.data.message
     }
 }
-export const postRegister = async (form_data: IFormData): Promise<AxiosResponse> => {
+export const postRegister = async (form_data: IForm): Promise<AxiosResponse> => {
     try {
         const res = await axios.post('/api/user/register', form_data)
         return res

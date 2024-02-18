@@ -1,0 +1,52 @@
+.wrapper {
+    display: flex;
+    align-items: center;
+    padding: 2px 4px;
+    border-radius: 3px;
+    flex-wrap: wrap;
+    flex-grow: 2;
+    background-color: #121214;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.wrapper:hover .edit_icon {
+    opacity: 1;
+    right: 8px;
+}
+.edit_icon {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.1s;
+    top: 7px;
+    width: 18px;
+    right: -10px;
+}
+
+.item_wrapper {
+    margin: 5px 8px;
+    display: flex;
+    align-items: center;
+    font-family: 'Source Code Pro', monospace;
+}
+.action {
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 2px;
+    width: 25px;
+
+    height: 25px;
+    text-align: center;
+    background-color: #121214;
+    margin: 0 6px;
+}
+
+@media screen and (max-width: 700px) {
+    .wrapper {
+        padding: 0 8px;
+    }
+}

@@ -1,7 +1,7 @@
 import { AxiosResponse } from 'axios'
 import axios from './axios'
 
-export const indexData = async (): Promise<AxiosResponse> => {
+export const index = async (): Promise<AxiosResponse> => {
     try {
         const res = await axios.get('/api/index_data')
         return res
@@ -17,3 +17,5 @@ export const updateDate = async (): Promise<AxiosResponse> => {
         throw e.response.data.message
     }
 }
+
+export default index

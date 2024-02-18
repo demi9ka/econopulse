@@ -1,0 +1,24 @@
+.wrapper {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding-bottom: 10px;
+}
+.code_wrapper {
+    flex-grow: 2;
+    background-color: #111111;
+    display: flex;
+    align-items: center;
+    border-radius: 4px;
+}
+.code_wrapper span {
+    opacity: 0.4;
+    padding: 0 10px;
+}
+.code {
+    padding: 10px 5px 10px 0;
+    font-size: 17px;
+    flex-grow: 2;
+    background-color: initial;
+    font-family: 'Source Code Pro', monospace;
+}

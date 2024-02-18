@@ -1,6 +1,6 @@
 import { AxiosResponse } from 'axios'
 import axios from './axios'
-import { ICalculatorData } from 'interface'
+import { IStructure } from 'interface'
 
 export const deleteFavorite = async (id: number): Promise<AxiosResponse> => {
     try {
@@ -16,7 +16,7 @@ export const deleteFavorite = async (id: number): Promise<AxiosResponse> => {
     }
 }
 
-export const createFavorite = async (name: string, data: ICalculatorData): Promise<AxiosResponse> => {
+export const createFavorite = async (name: string, data: IStructure): Promise<AxiosResponse> => {
     try {
         const res = await axios.post(
             '/api/create_favorite',

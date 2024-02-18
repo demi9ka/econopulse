@@ -1,29 +1,29 @@
 import { createContext, useState, FC, ReactNode, useEffect } from 'react'
-import { IUserData } from 'interface'
+import { IUser } from 'interface'
 import { getUser } from 'services/user'
 
-export interface IUserDataContext {
-    user_data: IUserData
-    setUserData: React.Dispatch<React.SetStateAction<IUserData>>
+export interface IUserContext {
+    user: IUser
+    setUser: React.Dispatch<React.SetStateAction<IUser>>
 }
 
-const UserDataContext = createContext<IUserDataContext | null>(null)
-const UserDataProvider: FC<{ children: ReactNode }> = ({ children }) => {
-    const [user_data, setUserData] = useState<IUserData>(undefined)
+const UserContext = createContext<IUserContext | null>(null)
+const UserProvider: FC<{ children: ReactNode }> = ({ children }) => {
+    const [user, setUser] = useState<IUser>(undefined)
     useEffect(() => {
         const F = async () => {
             try {
                 const res = await getUser()
-                if (res.status == 200) setUserData(res.data)
+                if (res.status == 200) setUser(res.data)
             } catch {
                 localStorage.removeItem('JWT')
-                setUserData(null)
+                setUser(null)
             }
         }
         F()
     }, [])
 
-    return <UserDataContext.Provider value={{ setUserData, user_data }}>{children}</UserDataContext.Provider>
+    return <UserContext.Provider value={{ setUser, user }}>{children}</UserContext.Provider>
 }
 
-export { UserDataContext, UserDataProvider }
+export { UserContext, UserProvider }

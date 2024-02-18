@@ -1,23 +1,23 @@
-import { EditMenuProvider } from 'provider/EditMenuProvider'
-import Calculator from './calculator/Calculator'
+import { EditProvider } from 'provider/EditProvider'
+import Structure from './structure/Structure'
 import Chart from './chart/Chart'
-import EditMenu from './edit-menu/EditMenu'
-import AppError from './app-error/AppError'
-import { FavoriteMenuProvider } from 'provider/FavoriteProvider'
-import FavoriteMenu from './favorite-menu/FavoriteMenu'
+import Edit from './edit/Edit'
+import Error from './error/Error'
+import { FavoriteProvider } from 'provider/FavoriteProvider'
+import Favorite from './favorite/Favorite'
 
 const HomePage = () => {
     return (
         <>
-            <AppError />
+            <Error />
             <Chart />
-            <EditMenuProvider>
-                <FavoriteMenuProvider>
-                    <Calculator />
-                    <EditMenu />
-                    <FavoriteMenu />
-                </FavoriteMenuProvider>
-            </EditMenuProvider>
+            <EditProvider>
+                <FavoriteProvider>
+                    <Structure />
+                    <Edit />
+                    <Favorite />
+                </FavoriteProvider>
+            </EditProvider>
         </>
     )
 }

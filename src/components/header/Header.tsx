@@ -1,12 +1,12 @@
 import styles from './header.module.css'
 import { Link } from 'react-router-dom'
 import { useContext } from 'react'
-import { UserDataContext, IUserDataContext } from 'provider/UserProvider'
+import { UserContext, IUserContext } from 'provider/UserProvider'
 import HeaderProfile from './header-profile/HeaderProfile'
 import { IconBrandTelegram } from '@tabler/icons-react'
-// import { IconBrandTelegram } from '@tabler/icons-react'
+
 const Header = () => {
-    const { user_data } = useContext(UserDataContext) as IUserDataContext
+    const { user } = useContext(UserContext) as IUserContext
     return (
         <header className={styles.header}>
             <div className={styles.wrapper}>
@@ -23,7 +23,9 @@ const Header = () => {
                         <a className={styles.tg_link} target="_blank" href="https://t.me/econopulse_ru">
                             <IconBrandTelegram color="#5fa2fa" size={20} />
                         </a>
-                        {user_data === null && (
+                        {user ? (
+                            <HeaderProfile data={user} />
+                        ) : (
                             <>
                                 <Link className={`${styles.auth} ${styles.register}`} to={'/register'}>
                                     Регистрация
@@ -33,7 +35,6 @@ const Header = () => {
                                 </Link>
                             </>
                         )}
-                        {user_data && <HeaderProfile data={user_data} />}
                     </div>
                 </div>
             </div>
