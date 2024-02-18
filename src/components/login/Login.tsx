@@ -5,15 +5,15 @@ import { IconEye, IconEyeOff } from '@tabler/icons-react'
 import { postLogin } from 'services/user'
 import { Loader } from '@mantine/core'
 
-import { UserDataContext, IUserDataContext } from 'provider/UserProvider'
-import { IUserData } from 'interface'
+import { UserContext, IUserContext } from 'provider/UserProvider'
+import { IUser } from 'interface'
 
 const Login = () => {
     const navigate = useNavigate()
     const [error, setError] = useState('')
     const [p_type, setPType] = useState(false)
     const [wait_res, setWaitRes] = useState(false)
-    const { setUserData } = useContext(UserDataContext) as IUserDataContext
+    const { setUser } = useContext(UserContext) as IUserContext
     const login = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
         setError('')
@@ -25,7 +25,7 @@ const Login = () => {
             setError('')
             localStorage.setItem('JWT', res.data.jwt)
             delete res.data.jwt
-            if (res.status == 200) setUserData(res.data as IUserData)
+            if (res.status == 200) setUser(res.data as IUser)
 
             setWaitRes(false)
             return navigate('/')
@@ -39,7 +39,7 @@ const Login = () => {
             <form className={styles.form} onSubmit={login}>
                 <div>
                     <h2 className={styles.title}>Вход</h2>
-                    <input autoComplete="off" required className={styles.form_input} type="text" placeholder="Почта" name="email" />
+                    <input autoComplete="off" required className={styles.form_input} type="text" placeholder="Имя пользователя" name="name" />
                     <label htmlFor="login_password_input" className={styles.pass_input_wrapper}>
                         <input autoComplete="off" id="login_password_input" required className={`${styles.form_input} ${styles.pass_input}`} type={p_type ? 'text' : 'password'} placeholder="Пароль" name="password" />
                         <div className={styles.view_password} onClick={() => setPType(!p_type)}>

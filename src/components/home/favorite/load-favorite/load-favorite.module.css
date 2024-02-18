@@ -1,0 +1,121 @@
+.wrapper {
+    margin-top: 10px;
+    height: 360px;
+    display: flex;
+    flex-direction: column;
+}
+.title {
+    font-size: 17px;
+    font-weight: normal;
+}
+.content_wrapper {
+    flex-grow: 2;
+    overflow-y: auto;
+}
+.favorite_wrapper {
+    margin: 10px 0;
+    width: 100%;
+}
+.favorite_wrapper::-webkit-scrollbar {
+    width: 0;
+}
+.msg {
+    width: 100%;
+    text-align: center;
+    padding: 7px 0;
+    background-color: #2e2e2e;
+    font-size: 14px;
+    margin: 5px 0;
+    border-radius: 4px;
+}
+.no_favorite {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.clear_cache {
+    font-size: 14px;
+    color: #b1b1b1;
+    cursor: pointer;
+}
+.clear_cache:hover {
+    text-decoration: underline;
+    opacity: 0.8;
+}
+.recovery {
+    color: #b1b1b1;
+    font-size: 14px;
+}
+.recovery:hover {
+    text-decoration: underline;
+    color: #c5c5c5;
+}
+.confirm_btn {
+    width: 100%;
+    padding: 5px;
+    text-align: center;
+    border: 0;
+    outline: 0;
+    font-size: 15px;
+    background-color: #6c3292;
+    border-radius: 4px;
+    transition: 0.1s;
+    cursor: pointer;
+}
+.confirm_btn:disabled {
+    opacity: 0.5;
+    background-color: #362a58;
+}
+.count {
+    font-weight: 100;
+    font-size: 15px;
+    opacity: 0.9;
+}
+.error {
+    color: #d64141;
+    font-size: 15px;
+    margin-left: 5px;
+    /* font-weight: 200; */
+}
+.item {
+    overflow: hidden;
+    width: 100%;
+    border: 1px solid #555555;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 15px;
+    margin-bottom: 6px;
+    cursor: pointer;
+    transition: 0.1s;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.item.active {
+    border: 1px solid #885bbd;
+    border-left: 4px solid #885bbd;
+}
+.name {
+    margin: 0 5px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.name_wrapper {
+    flex-grow: 2;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
+.delete {
+    display: flex;
+    width: 24px;
+    align-items: center;
+    justify-content: end;
+    transition: 0.2s;
+}
+.item.active .delete:hover {
+    opacity: 0.7;
+}

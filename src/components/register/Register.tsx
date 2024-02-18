@@ -4,11 +4,11 @@ import { Link, useNavigate } from 'react-router-dom'
 import { IconEye, IconEyeOff } from '@tabler/icons-react'
 import { postRegister } from 'services/user'
 import { Loader } from '@mantine/core'
-import { IUserData } from 'interface'
-import { IUserDataContext, UserDataContext } from 'provider/UserProvider'
+import { IUser } from 'interface'
+import { IUserContext, UserContext } from 'provider/UserProvider'
 
 const Register = () => {
-    const { setUserData } = useContext(UserDataContext) as IUserDataContext
+    const { setUser } = useContext(UserContext) as IUserContext
     const navigate = useNavigate()
     const [error, setError] = useState('')
     const [p_type, setPType] = useState(false)
@@ -38,7 +38,7 @@ const Register = () => {
             const res = await postRegister(form_value)
             localStorage.setItem('JWT', res.data.jwt)
             delete res.data.jwt
-            if (res.status == 201) setUserData(res.data as IUserData)
+            if (res.status == 201) setUser(res.data as IUser)
             setWaitRes(false)
             return navigate('/')
         } catch (e: any) {
@@ -51,7 +51,7 @@ const Register = () => {
             <form className={styles.form} onSubmit={register}>
                 <div>
                     <h2 className={styles.title}>Регистрация</h2>
-                    <input autoComplete="off" required className={styles.form_input} type="text" placeholder="Почта" name="email" />
+
                     <input autoComplete="off" required className={styles.form_input} type="text" placeholder="Имя пользователя" name="name" />
                     <label htmlFor="login_password_input" className={styles.pass_input_wrapper}>
                         <input autoComplete="off" minLength={4} id="login_password_input" required className={`${styles.form_input} ${styles.pass_input}`} type={p_type ? 'text' : 'password'} placeholder="Пароль" name="password" />

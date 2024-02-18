@@ -1,0 +1,38 @@
+.wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.content {
+    width: 100%;
+    max-width: 1920px;
+    padding: 20px;
+    user-select: text;
+}
+.content h2 {
+    font-size: 28px;
+    font-weight: 500;
+}
+.content h3 {
+    font-size: 20px;
+    margin-left: 18px;
+    font-weight: 400;
+    padding: 10px 0;
+}
+.content h4 {
+    opacity: 0.9;
+    font-size: 15px;
+    margin-left: 30px;
+    font-weight: 400;
+}
+.content p {
+    width: calc(100% - 80px);
+    margin: 10px 30px;
+    background-color: #212529;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 15px;
+}
+.content a {
+    color: #bc6cfd;
+}

@@ -1,20 +1,31 @@
 import styles from './header.module.css'
 import { Link } from 'react-router-dom'
 import { useContext } from 'react'
-import { UserDataContext, IUserDataContext } from 'provider/UserProvider'
+import { UserContext, IUserContext } from 'provider/UserProvider'
 import HeaderProfile from './header-profile/HeaderProfile'
+import { IconBrandTelegram } from '@tabler/icons-react'
+
 const Header = () => {
-    const { user_data } = useContext(UserDataContext) as IUserDataContext
+    const { user } = useContext(UserContext) as IUserContext
     return (
         <header className={styles.header}>
             <div className={styles.wrapper}>
                 <div className={styles.content}>
-                    <Link className={styles.poster} to={'/'}>
-                        <img className={styles.logo} src="/logo.svg" alt="" />
-                        <h2>Econopulse</h2>
-                    </Link>
-                    <div>
-                        {user_data === null && (
+                    <div className={styles.nav}>
+                        <Link className={styles.poster} to={'/'}>
+                            <img className={styles.logo} src="/logo.svg" alt="" />
+                            <h2>
+                                Econopulse<span className={styles.prefix}>.ru</span>{' '}
+                            </h2>
+                        </Link>
+                    </div>
+                    <div className={styles.nav}>
+                        <a className={styles.tg_link} target="_blank" href="https://t.me/econopulse_ru">
+                            <IconBrandTelegram color="#5fa2fa" size={20} />
+                        </a>
+                        {user ? (
+                            <HeaderProfile data={user} />
+                        ) : (
                             <>
                                 <Link className={`${styles.auth} ${styles.register}`} to={'/register'}>
                                     Регистрация
@@ -24,7 +35,6 @@ const Header = () => {
                                 </Link>
                             </>
                         )}
-                        {user_data && <HeaderProfile data={user_data} />}
                     </div>
                 </div>
             </div>

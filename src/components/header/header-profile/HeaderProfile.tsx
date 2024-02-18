@@ -1,14 +1,14 @@
-import { IUserData } from 'interface'
+import { IUser } from 'interface'
 import styles from './header-profile.module.css'
 import { FC, useState, useContext } from 'react'
 import { Menu } from '@mantine/core'
 import { IconChevronDown, IconLogout2, IconSettings, IconUserCircle, IconUser } from '@tabler/icons-react'
-import { UserDataContext, IUserDataContext } from 'provider/UserProvider'
-import {  useNavigate } from 'react-router-dom'
+import { UserContext, IUserContext } from 'provider/UserProvider'
+import { useNavigate } from 'react-router-dom'
 
-const HeaderProfile: FC<{ data: IUserData }> = ({ data }) => {
+const HeaderProfile: FC<{ data: IUser }> = ({ data }) => {
     const navigate = useNavigate()
-    const { setUserData } = useContext(UserDataContext) as IUserDataContext
+    const { setUser } = useContext(UserContext) as IUserContext
     const [active, setActive] = useState(false)
     return (
         <Menu onChange={e => setActive(e)} shadow="md" withArrow width={170} position="bottom-end">
@@ -29,7 +29,7 @@ const HeaderProfile: FC<{ data: IUserData }> = ({ data }) => {
                 <Menu.Item
                     onClick={() => {
                         localStorage.removeItem('JWT')
-                        setUserData(null)
+                        setUser(null)
                         navigate('/login')
                     }}
                     p={6}

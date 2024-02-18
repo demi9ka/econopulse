@@ -21,6 +21,10 @@
     align-items: center;
     justify-content: space-between;
 }
+.nav {
+    display: flex;
+    align-items: center;
+}
 .poster {
     display: flex;
     align-items: center;
@@ -33,14 +37,18 @@
 }
 .logo {
     pointer-events: none;
-    width: 37px;
     border-radius: 4px;
     margin-right: 5px;
     height: 37px;
+    width: 37px;
+}
+.prefix {
+    font-size: 18px;
+    color: #845ef7;
 }
 .auth {
     font-size: 15px;
-    padding: 8px 20px;
+    padding: 5px 20px;
     text-align: center;
     border-radius: 4px;
     text-decoration: none;
@@ -55,6 +63,19 @@
 .auth:hover {
     opacity: 0.9;
 }
+.tg_link {
+    padding: 6px 12px;
+    border-radius: 4px;
+    transition: 0.1s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 5px;
+}
+.tg_link:hover {
+    background-color: #388af538;
+}
+
 @media screen and (max-width: 550px) {
     .header {
         padding: 10px;

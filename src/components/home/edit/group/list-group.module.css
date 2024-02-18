@@ -1,0 +1,28 @@
+.group_wrapper {
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+
+    align-items: center;
+    margin-bottom: 5px;
+}
+.group_item {
+    border: 1px solid #3c3455;
+    color: #d4d4d4;
+    font-size: 14px;
+    padding: 3px 4px;
+    border-radius: 4px;
+    margin: 1px;
+    transition: 0.1s;
+    cursor: pointer;
+}
+.group_item:hover {
+    color: #f0f0f0;
+}
+.group_item.active {
+    cursor: default;
+    color: #f5f5f5;
+    background-color: #252035;
+    border: 1px solid #987af1;
+}

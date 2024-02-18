@@ -1,10 +1,10 @@
 import { AxiosResponse } from 'axios'
 import axios from './axios'
-import { ICalculatorData } from 'interface'
+import { IStructure } from 'interface'
 
-export default async (calculation_data: ICalculatorData): Promise<AxiosResponse> => {
+export default async (structure: IStructure): Promise<AxiosResponse> => {
     try {
-        const res = await axios.post('/api/chart_data', calculation_data, {
+        const res = await axios.post('/api/chart_data', structure, {
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('JWT') || null,
             },
