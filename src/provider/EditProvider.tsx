@@ -36,7 +36,6 @@ const EditProvider: FC<{ children: ReactNode }> = ({ children }) => {
     }, [model_id])
 
     const input_element = inputRef.current
-
     useEffect(() => {
         input_element && input_element.focus()
     }, [input_element])

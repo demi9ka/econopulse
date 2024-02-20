@@ -62,7 +62,11 @@ const ItemManagement: FC<{ id: number }> = ({ id }) => {
                         data: structure.data.filter((_, i) => i !== id),
                     }
                     if (!update_structure.data.length) {
-                        update_structure.data.push(defaultValue(index!.data[0].short_name))
+                        update_structure.data.push({
+                            color: '#F8F9FA',
+                            data: '',
+                            reverse: false,
+                        })
                         setStructure(update_structure)
                         setFocusIndex(0)
                         setModelId(0)

@@ -23,6 +23,5 @@ export const encode = (code: string, index: IIndex) => {
 }
 
 export const checkValid = (data: string) => {
-    data
-    return true
+    return !!data.replace(/\s+/g, '').length
 }
