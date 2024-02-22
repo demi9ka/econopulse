@@ -2,6 +2,7 @@
     width: 100%;
     display: flex;
     justify-content: center;
+    background-color: #1a1b1e;
 }
 .content {
     width: 100%;
