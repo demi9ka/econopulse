@@ -6,8 +6,7 @@
 .content {
     width: 100%;
     max-width: 1920px;
-    padding: 0 20px;
-    padding-bottom: 200px;
+    padding: 0px 20px 40px 20px;
     /* color: #f59f0046; */
 }
 .header {

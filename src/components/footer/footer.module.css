@@ -1,0 +1,46 @@
+footer {
+    padding: 40px 0 20px 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: #141414;
+}
+.content {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    max-width: 1920px;
+}
+.part {
+    margin-right: 20px;
+}
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+.logo p {
+    font-size: 22px;
+    margin-left: 5px;
+}
+.logo img {
+    width: 32px;
+    height: 32px;
+}
+.hyphen {
+    text-align: right;
+    font-size: 14px;
+    line-height: 1.2em;
+    color: #9b9b9b;
+}
+.sourse {
+    font-size: 15px;
+    color: #bbbbbb;
+}
+.sourse a {
+    color: #146db6;
+    text-decoration: none;
+}
+.sourse a:hover {
+    text-decoration: underline;
+}

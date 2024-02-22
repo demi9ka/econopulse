@@ -6,6 +6,7 @@ import Home from './home/Home'
 import Register from 'components/register/Register'
 import Login from 'components/login/Login'
 import Privacy from 'components/privacy/Privacy'
+import Footer from './footer/Footer'
 
 const App = () => {
     return (
@@ -18,6 +19,7 @@ const App = () => {
                 <Route path="/privacy" element={<Privacy />} />
                 <Route path="*" element={<p>page not found</p>} />
             </Routes>
+            <Footer />
         </div>
     )
 }
