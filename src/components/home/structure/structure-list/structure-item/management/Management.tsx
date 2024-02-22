@@ -4,11 +4,10 @@ import { StructureContext, IStructureContext } from 'provider/StructureProvider'
 import { IEditContext, EditContext } from 'provider/EditProvider'
 import { IconX, IconDots, IconSwitchVertical, IconScissors } from '@tabler/icons-react'
 import { Menu, Switch } from '@mantine/core'
-import defaultValue from 'utils/defaultValue'
 import { IStructure } from 'interface'
 
 const ItemManagement: FC<{ id: number }> = ({ id }) => {
-    const { structure, setStructure, index } = useContext(StructureContext) as IStructureContext
+    const { structure, setStructure } = useContext(StructureContext) as IStructureContext
     const { setFocusIndex, setModelId } = useContext(EditContext) as IEditContext
 
     return (

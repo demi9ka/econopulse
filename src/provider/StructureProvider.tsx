@@ -18,7 +18,7 @@ const StructureProvider: FC<{ children: ReactNode }> = ({ children }) => {
     const { setError } = useContext(ErrorContext) as IErrorContext
     const [structure, setStructure] = useState<IStructure>({
         crop_id: null,
-        data: [defaultValue('Индекс МосБиржи')],
+        data: [defaultValue()],
         type: null,
     })
     const loadIndex = async () => {

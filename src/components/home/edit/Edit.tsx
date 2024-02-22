@@ -11,7 +11,7 @@ import CodeInput from './input/CodeInput'
 
 const Edit = () => {
     const media_query = useMediaQuery('(max-width:700px)')
-    const { model_id, setModelId, model } = useContext(EditContext) as IEditContext
+    const { model_id, setModelId } = useContext(EditContext) as IEditContext
     const { structure, setStructure } = useContext(StructureContext) as IStructureContext
     if (model_id < 0) return <></>
     if (media_query)
