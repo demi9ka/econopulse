@@ -12,6 +12,7 @@ const App = () => {
     return (
         <div className={styles.container}>
             <Header />
+
             <div className={styles.content}>
                 <Routes>
                     <Route path="/" element={<Home />} />
@@ -20,8 +21,9 @@ const App = () => {
                     <Route path="/privacy" element={<Privacy />} />
                     <Route path="*" element={<p>page not found</p>} />
                 </Routes>
+
+                <Footer />
             </div>
-            <Footer />
         </div>
     )
 }

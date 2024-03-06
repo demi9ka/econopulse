@@ -4,21 +4,25 @@ import { useContext } from 'react'
 import { UserContext, IUserContext } from 'provider/UserProvider'
 import HeaderProfile from './header-profile/HeaderProfile'
 import { IconBrandTelegram } from '@tabler/icons-react'
+import { useMediaQuery } from '@mantine/hooks'
+import MobileMenu from './mobile-menu/MobileMenu'
 
 const Header = () => {
     const { user } = useContext(UserContext) as IUserContext
+    const media_mobile = useMediaQuery('(max-width:520px)')
+
     return (
         <header className={styles.header}>
-            <div className={styles.wrapper}>
-                <div className={styles.content}>
-                    <div className={styles.nav}>
-                        <Link className={styles.poster} to={'/'}>
-                            <img className={styles.logo} src="/logo.svg" alt="" />
-                            <h2>
-                                Econopulse<span className={styles.prefix}>.ru</span>{' '}
-                            </h2>
-                        </Link>
-                    </div>
+            <div className={styles.content}>
+                <div className={styles.nav}>
+                    <Link className={styles.poster} to={'/'}>
+                        <img className={styles.logo} src="/logo.svg" alt="" />
+                        <h2>
+                            Econopulse<span className={styles.prefix}>.ru</span>{' '}
+                        </h2>
+                    </Link>
+                </div>
+                {!media_mobile ? (
                     <div className={styles.nav}>
                         <a className={styles.tg_link} target="_blank" href="https://t.me/econopulse_ru">
                             <IconBrandTelegram color="#5fa2fa" size={20} />
@@ -36,7 +40,9 @@ const Header = () => {
                             </>
                         )}
                     </div>
-                </div>
+                ) : (
+                    <MobileMenu />
+                )}
             </div>
         </header>
     )

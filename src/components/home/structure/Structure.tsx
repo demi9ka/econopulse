@@ -13,7 +13,6 @@ import { IUserContext, UserContext } from 'provider/UserProvider'
 import { IconHexagonLetterR, IconArrowsExchange, IconCheck, IconCircleOff, IconChevronDown, IconChartDots3, IconCircleCheck } from '@tabler/icons-react'
 import { IFavoriteContext, FavoriteContext } from 'provider/FavoriteProvider'
 import { updateDate } from 'services/indexData'
-
 const type_data = {
     roc: ['ROC', <IconHexagonLetterR color="#7950F2" style={{ margin: '0 8px' }} width={20} />],
     overlay: ['Наложить', <IconArrowsExchange color="#FAB005" style={{ margin: '0 8px' }} width={20} />],
@@ -56,97 +55,104 @@ const Structure = () => {
         else setUpdateDateString(`${(delta / 1440).toFixed(0)}дн`)
     }, [update_date, model_id])
 
+    const isMobile = useMediaQuery(`(max-width: 550px)`)
+    const right_part = (
+        <>
+            <div className={styles.menu_update_date}>
+                {update_date && (
+                    <div className={styles.update_date} title="Обновление графиков">
+                        <IconCircleCheck color="#94D82D" />
+                        <p>{update_date_string} </p>
+                    </div>
+                )}
+
+                <Menu position="bottom-end" withArrow shadow="md" width={200}>
+                    <Menu.Target>
+                        <Button fw={'normal'} mx={15} bg={'#25262b'} rightSection={<IconChevronDown width={14} />}>
+                            {structure.type && (
+                                <>
+                                    {type_data[structure.type][0]}
+                                    {type_data[structure.type][1]}
+                                </>
+                            )}
+                            {!structure.type && 'Тип графика'}
+                        </Button>
+                    </Menu.Target>
+
+                    <Menu.Dropdown right={0}>
+                        <Menu.Item
+                            onClick={() => {
+                                structure.type = null
+                                setStructure({ ...structure })
+                            }}
+                            leftSection={<IconCircleOff width={21} color="#828282" />}
+                            rightSection={structure.type == null && <IconCheck color="#51CF66" width={21} />}
+                        >
+                            None
+                        </Menu.Item>
+                        <Menu.Item
+                            onClick={() => {
+                                structure.type = 'roc'
+                                setStructure({ ...structure })
+                            }}
+                            leftSection={<IconHexagonLetterR width={21} color="#7950F2" />}
+                            rightSection={structure.type == 'roc' && <IconCheck color="#51CF66" width={21} />}
+                        >
+                            ROC
+                        </Menu.Item>
+                        <Menu.Item
+                            onClick={() => {
+                                structure.type = 'overlay'
+                                setStructure({ ...structure })
+                            }}
+                            leftSection={<IconArrowsExchange width={21} color="#FAB005" />}
+                            rightSection={structure.type == 'overlay' && <IconCheck color="#51CF66" width={21} />}
+                        >
+                            Наложить
+                        </Menu.Item>
+                    </Menu.Dropdown>
+                </Menu>
+            </div>
+            <Button
+                id="button_generate"
+                bg={'#4263EB'}
+                fw={400}
+                w={120}
+                px={media_query ? 30 : 20}
+                disabled={disabled}
+                className={styles.generate_btn}
+                opacity={disabled ? 0.8 : 1}
+                onClick={async () => {
+                    if (!user) return navigate('/register')
+                    if (structure.data.length) {
+                        setDisabled(true)
+                        try {
+                            const res = await chart(structure)
+                            if (res.status == 200) setChart(res.data)
+                        } catch (e: any) {
+                            setError(prev => [...prev, { content: <p>{e}</p> }])
+                        }
+                        setDisabled(false)
+                    }
+                }}
+            >
+                {disabled ? <Loader size={20} mr={10} color="#F8F9FA" /> : 'Генерация'}
+            </Button>{' '}
+        </>
+    )
     return (
         <div className={styles.wrapper}>
             <div className={styles.content}>
                 <div className={styles.header}>
                     <div>
                         {user && (
-                            <Button fw={'normal'} px={10} py={0} bg={'#f59f0040'} className={styles.favorite} onClick={() => setOpened(true)}>
+                            <button className={styles.favorite} onClick={() => setOpened(true)}>
                                 <span style={{ marginRight: '10px' }}>Избранное</span>
                                 <IconChartDots3 color="#FCC419" width={20} />
-                            </Button>
+                            </button>
                         )}
                     </div>
-                    <div style={{ display: 'flex', alignItems: 'center' }}>
-                        {update_date && (
-                            <div className={styles.update_date} title="Обновление графиков">
-                                <IconCircleCheck color="#94D82D" />
-                                <p>{update_date_string} </p>
-                            </div>
-                        )}
-
-                        <Menu position="bottom-end" withArrow shadow="md" width={200}>
-                            <Menu.Target>
-                                <Button fw={'normal'} mx={15} bg={'#25262b'} rightSection={<IconChevronDown width={14} />}>
-                                    {structure.type && (
-                                        <>
-                                            {type_data[structure.type][0]}
-                                            {type_data[structure.type][1]}
-                                        </>
-                                    )}
-                                    {!structure.type && 'Тип графика'}
-                                </Button>
-                            </Menu.Target>
-
-                            <Menu.Dropdown right={0}>
-                                <Menu.Item
-                                    onClick={() => {
-                                        structure.type = null
-                                        setStructure({ ...structure })
-                                    }}
-                                    leftSection={<IconCircleOff width={21} color="#828282" />}
-                                    rightSection={structure.type == null && <IconCheck color="#51CF66" width={21} />}
-                                >
-                                    None
-                                </Menu.Item>
-                                <Menu.Item
-                                    onClick={() => {
-                                        structure.type = 'roc'
-                                        setStructure({ ...structure })
-                                    }}
-                                    leftSection={<IconHexagonLetterR width={21} color="#7950F2" />}
-                                    rightSection={structure.type == 'roc' && <IconCheck color="#51CF66" width={21} />}
-                                >
-                                    ROC
-                                </Menu.Item>
-                                <Menu.Item
-                                    onClick={() => {
-                                        structure.type = 'overlay'
-                                        setStructure({ ...structure })
-                                    }}
-                                    leftSection={<IconArrowsExchange width={21} color="#FAB005" />}
-                                    rightSection={structure.type == 'overlay' && <IconCheck color="#51CF66" width={21} />}
-                                >
-                                    Наложить
-                                </Menu.Item>
-                            </Menu.Dropdown>
-                        </Menu>
-                        <Button
-                            id="button_generate"
-                            bg={'#4263EB'}
-                            fw={400}
-                            w={120}
-                            px={media_query ? 30 : 20}
-                            disabled={disabled}
-                            opacity={disabled ? 0.8 : 1}
-                            onClick={async () => {
-                                if (!user) return navigate('/register')
-                                if (structure.data.length) {
-                                    setDisabled(true)
-                                    try {
-                                        const res = await chart(structure)
-                                        if (res.status == 200) setChart(res.data)
-                                    } catch (e: any) {
-                                        setError(prev => [...prev, { content: <p>{e}</p> }])
-                                    }
-                                    setDisabled(false)
-                                }
-                            }}
-                        >
-                            {disabled ? <Loader size={20} mr={10} color="#F8F9FA" /> : 'Генерация'}
-                        </Button>
-                    </div>
+                    {isMobile ? right_part : <div className={styles.right_part}>{right_part}</div>}
                 </div>
                 <StructureList />
             </div>

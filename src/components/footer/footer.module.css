@@ -1,17 +1,15 @@
 footer {
-    z-index: -1;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    padding: 40px 0 20px 0;
+    padding: 20px 0 20px 0;
     width: 100%;
     display: flex;
     justify-content: center;
     background-color: #141414;
+    max-height: 100px;
 }
 .content {
     display: flex;
     justify-content: center;
+    align-items: center;
     width: 100%;
     max-width: 1920px;
 }
@@ -38,7 +36,8 @@ footer {
     color: #9b9b9b;
 }
 .sourse {
-    font-size: 15px;
+    width: 600px;
+    font-size: 13px;
     color: #bbbbbb;
 }
 .sourse a {
