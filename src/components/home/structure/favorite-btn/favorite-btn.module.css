@@ -1,0 +1,18 @@
+.favorite {
+    padding: 7px 10px;
+    font-size: 14px;
+    border-radius: 4px;
+    background-color: #f59f0040;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+}
+.favorite:hover {
+    background-color: #da920d40;
+}
+@media screen and (max-width: 550px) {
+    .favorite {
+        flex-grow: 1;
+    }
+}

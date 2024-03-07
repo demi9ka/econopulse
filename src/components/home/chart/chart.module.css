@@ -10,7 +10,7 @@
     justify-content: center;
 }
 .wrapper.active {
-    height: calc(100svh - 56px);
+    height: calc(100svh - 48px);
 }
 .wrapper.active .chart_box {
     height: 100%;
