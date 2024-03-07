@@ -38,6 +38,14 @@ const Chart = () => {
         },
     }
 
-    return <div className={`${styles.wrapper} ${chart && styles.active}`}>{chart && <Line options={options} data={chart} />}</div>
+    return (
+        <div className={`${styles.wrapper} ${chart && styles.active}`}>
+            {chart && (
+                <div className={styles.chart_box}>
+                    <Line options={options} data={chart} />
+                </div>
+            )}
+        </div>
+    )
 }
 export default Chart
