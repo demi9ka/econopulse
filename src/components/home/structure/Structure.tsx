@@ -25,6 +25,7 @@ const Structure = () => {
                 ) : (
                     <div className={styles.header}>
                         <FavoriteBtn />
+
                         <div className={styles.right_part}>
                             <ChartType />
                             <UpdateDate />

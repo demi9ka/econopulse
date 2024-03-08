@@ -7,9 +7,8 @@ import { IUserContext, UserContext } from 'provider/UserProvider'
 const FavoriteBtn = () => {
     const { setOpened } = useContext(FavoriteContext) as IFavoriteContext
     const { user } = useContext(UserContext) as IUserContext
-    if (!user) return <></>
     return (
-        <button className={styles.favorite} onClick={() => setOpened(true)}>
+        <button disabled={!user} className={styles.favorite} onClick={() => setOpened(true)}>
             <span style={{ marginRight: '10px' }}>Избранное</span>
             <IconChartDots3 color="#FCC419" width={20} />
         </button>

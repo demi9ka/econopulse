@@ -14,13 +14,15 @@ const App = () => {
             <Header />
 
             <div className={styles.content}>
-                <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/login" element={<Login />} />
-                    <Route path="/register" element={<Register />} />
-                    <Route path="/privacy" element={<Privacy />} />
-                    <Route path="*" element={<p>page not found</p>} />
-                </Routes>
+                <div className={styles.page}>
+                    <Routes>
+                        <Route path="/" element={<Home />} />
+                        <Route path="/login" element={<Login />} />
+                        <Route path="/register" element={<Register />} />
+                        <Route path="/privacy" element={<Privacy />} />
+                        <Route path="*" element={<p>page not found</p>} />
+                    </Routes>
+                </div>
 
                 <Footer />
             </div>

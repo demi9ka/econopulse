@@ -47,3 +47,29 @@ footer {
 .sourse a:hover {
     text-decoration: underline;
 }
+
+@media screen and (max-width: 550px) {
+    footer {
+        padding: 5px;
+        max-height: 200px;
+    }
+    .part {
+        margin-right: 10px;
+    }
+    .logo p {
+        font-size: 20px;
+        margin-left: 2px;
+    }
+    .logo img {
+        width: 26px;
+        height: 26px;
+    }
+    .hyphen {
+        font-size: 12px;
+        line-height: 1em;
+    }
+    .sourse {
+        font-size: 10px;
+        line-height: 1em;
+    }
+}

@@ -11,6 +11,9 @@
 .favorite:hover {
     background-color: #da920d40;
 }
+.favorite:disabled {
+    opacity: 0.6;
+}
 @media screen and (max-width: 550px) {
     .favorite {
         flex-grow: 1;
