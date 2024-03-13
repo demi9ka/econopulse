@@ -30,6 +30,7 @@ footer {
     height: 32px;
 }
 .hyphen {
+    font-weight: normal;
     text-align: right;
     font-size: 14px;
     line-height: 1.2em;

@@ -10,10 +10,10 @@ const Footer = () => {
                             Econopulse<span className={styles.prefix}>.ru</span>{' '}
                         </p>
                     </div>
-                    <p className={styles.hyphen}>
+                    <h1 className={styles.hyphen}>
                         Статистика и анализ <br />
                         экономических показателей
-                    </p>
+                    </h1>
                 </div>
                 <p className={styles.sourse}>
                     Для построения графиков используются данные, полученные с сайтов{' '}
