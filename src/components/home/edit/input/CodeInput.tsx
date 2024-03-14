@@ -26,7 +26,7 @@ const CodeStructure = () => {
                 <span>=</span> <div ref={inputRef} contentEditable className={styles.code} dangerouslySetInnerHTML={{ __html: text }}></div>
             </div> */}
             <div className={styles.code_wrapper}>
-                <span>=</span> <input ref={inputRef} onChange={e => setText(e)} value={model} className={styles.code} />
+                <span>=</span> <input ref={inputRef} placeholder="GDP - (GDP * Keybid / 100)" onChange={e => setText(e)} value={model} className={styles.code} />
             </div>
         </div>
     )

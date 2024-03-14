@@ -40,7 +40,7 @@ const SaveFavorite = () => {
 
     return (
         <div className={styles.wrapper}>
-            <p className={styles.title}>Сохранить конфигурацию. {error && <span className={styles.error}>{error}</span>}</p>
+            <p className={styles.title}>Сохранить структуру. {error && <span className={styles.error}>{error}</span>}</p>
             <form onSubmit={create}>
                 <input required className={styles.name_input} autoComplete="off" name="name" type="text" placeholder="Название" value={name} onChange={e => setName(e.target.value)} autoFocus={true} />
                 <button className={styles.submit_btn} disabled={name === '' || !structure || !user || favorite == null || !!favorite.find(item => item.name === name.trim()) || req_proccess} type="submit">

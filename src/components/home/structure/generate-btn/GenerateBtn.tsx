@@ -30,6 +30,7 @@ const GenerateBtn = () => {
                 if (!user) return navigate('/register')
                 if (structure.data.length) {
                     setDisabled(true)
+                    setError([])
                     try {
                         const res = await chart(structure)
                         if (res.status == 200) setChart(res.data)
