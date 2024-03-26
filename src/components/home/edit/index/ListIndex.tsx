@@ -3,13 +3,14 @@ import { IEditContext, EditContext } from 'provider/EditProvider'
 import { IStructureContext, StructureContext } from 'provider/StructureProvider'
 
 import styles from './list-index.module.css'
+import { checkValid } from 'utils/writeCode'
 
 type IList = number[]
 
 const List = () => {
     const { index } = useContext(StructureContext) as IStructureContext
 
-    const { group, inputRef, focus_index, setModel, setFocusIndex, model } = useContext(EditContext) as IEditContext
+    const { group, inputRef, focus_index, setModel, setFocusIndex, model, setModelValid } = useContext(EditContext) as IEditContext
     const [list, setList] = useState<IList>([])
     useEffect(() => (group >= 0 ? setList(index!.group[group][1]) : setList(index!.data.map(el => el.id))), [group])
 
@@ -27,16 +28,25 @@ const List = () => {
                             const currentPosition = inputElement!.selectionStart as number
                             const match = model.match(/\b\w+\b/g)
                             let complete = false
+                            let update_model = ''
                             if (match !== null) {
                                 match.forEach(word => {
                                     if (currentPosition >= model.indexOf(word) && currentPosition <= model.indexOf(word) + word.length) {
-                                        setModel(prev => prev.replace(word, el.short_name))
+                                        update_model = model.replace(word, el.short_name)
+                                        setModel(update_model)
                                         complete = true
                                     }
                                 })
                             }
-                            if (!complete) setModel(prev => prev.slice(0, currentPosition) + el.short_name + prev.slice(currentPosition))
+
+                            if (!complete) {
+                                update_model = model.slice(0, currentPosition) + el.short_name + model.slice(currentPosition)
+                                setModel(update_model)
+                            }
+                            const valid = checkValid(update_model, index)
+                            setModelValid(valid.result)
                             setFocusIndex(id)
+
                             inputElement!.focus()
                             inputElement!.setSelectionRange(currentPosition, currentPosition + 1)
                         }}

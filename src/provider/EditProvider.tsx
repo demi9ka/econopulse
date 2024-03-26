@@ -40,8 +40,6 @@ const EditProvider: FC<{ children: ReactNode }> = ({ children }) => {
         input_element && input_element.focus()
     }, [input_element])
 
-    useEffect(() => setModelValid(checkValid(model)), [model])
-
     return <EditContext.Provider value={{ focus_index, model, model_id, model_valid, setModelId, setModelValid, group, setFocusIndex, inputRef, setModel, setGroup }}>{children}</EditContext.Provider>
 }
 
