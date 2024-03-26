@@ -7,6 +7,14 @@ import { useContext } from 'react'
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, annotationPlugin)
 
+// crossRot'
+// 'dash'
+// 'line'
+// 'rect'
+// 'rectRounded'
+// 'rectRot'
+// 'star'
+// 'triangle'
 const Chart = () => {
     const { chart } = useContext(ChartContext) as IChartContext
     const options: any = {
@@ -14,12 +22,12 @@ const Chart = () => {
 
         scales: {
             y: {
-                // beginAtZero: true,
+                beginAtZero: true,
                 position: 'right',
             },
         },
-        borderWidth: 2,
-        pointBorderWidth: 1,
+        borderWidth: 0.8,
+        pointBorderWidth: 0.1,
         plugins: {
             legend: {
                 position: 'top' as const,
