@@ -58,7 +58,8 @@
 .auth:hover {
     opacity: 0.9;
 }
-.tg_link {
+.tg_link,
+.manual_link {
     padding: 6px 12px;
     border-radius: 4px;
     transition: 0.1s;
@@ -66,9 +67,17 @@
     justify-content: center;
     align-items: center;
     margin-right: 5px;
+    text-decoration: none;
 }
 .tg_link:hover {
     background-color: #388af538;
+}
+.manual_link p {
+    margin-right: 5px;
+}
+.manual_link:hover {
+    background-color: #f5d23838;
+    color: #f5d238;
 }
 
 @media screen and (max-width: 520px) {

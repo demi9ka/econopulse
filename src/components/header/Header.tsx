@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { useContext } from 'react'
 import { UserContext, IUserContext } from 'provider/UserProvider'
 import HeaderProfile from './header-profile/HeaderProfile'
-import { IconBrandTelegram } from '@tabler/icons-react'
+import { IconBrandTelegram, IconZoomQuestion } from '@tabler/icons-react'
 import { useMediaQuery } from '@mantine/hooks'
 import MobileMenu from './mobile-menu/MobileMenu'
 
@@ -24,6 +24,10 @@ const Header = () => {
                 </div>
                 {!media_mobile ? (
                     <div className={styles.nav}>
+                        <Link className={styles.manual_link} to={'/manual'}>
+                            <p>Как пользоваться</p>
+                            <IconZoomQuestion color="#f5d238" size={20} />
+                        </Link>
                         <a className={styles.tg_link} target="_blank" href="https://t.me/econopulse_ru">
                             <IconBrandTelegram color="#5fa2fa" size={20} />
                         </a>

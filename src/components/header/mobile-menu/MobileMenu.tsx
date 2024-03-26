@@ -1,10 +1,10 @@
 import { useMediaQuery } from '@mantine/hooks'
 import styles from './mobile-menu.module.css'
 import { Menu } from '@mantine/core'
-import { IconBrandTelegram, IconChartAreaFilled, IconLogin2, IconLogout2, IconMenu2, IconSettings, IconUser } from '@tabler/icons-react'
+import { IconBrandTelegram, IconChartAreaFilled, IconLogin2, IconLogout2, IconMenu2, IconSettings, IconUser, IconZoomQuestion } from '@tabler/icons-react'
 import { UserContext, IUserContext } from 'provider/UserProvider'
 import { useContext } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const MobileMenu = () => {
     const navigate = useNavigate()
@@ -37,6 +37,13 @@ const MobileMenu = () => {
                 )}
                 <Menu.Item className={styles.menu_p} onClick={() => navigate('/setting')} leftSection={<IconSettings width={20} />}>
                     Настройки
+                </Menu.Item>
+                <Link className={styles.manual_link} to={'/manual'}>
+                    <p>Как пользоваться</p>
+                    <IconZoomQuestion color="#f5d238" size={20} />
+                </Link>
+                <Menu.Item className={styles.menu_p} leftSection={<IconZoomQuestion color="#f5d238" size={20} />}>
+                    Как пользоваться
                 </Menu.Item>
                 <Menu.Item className={`${styles.menu_p} ${styles.tg_link}`} onClick={() => window.open('https://t.me/econopulse_ru', '_blank')} leftSection={<IconBrandTelegram color="#5fa2fa" width={20} />}>
                     Новости
