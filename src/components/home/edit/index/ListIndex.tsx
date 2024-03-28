@@ -48,7 +48,7 @@ const List = () => {
                             setFocusIndex(id)
 
                             inputElement!.focus()
-                            inputElement!.setSelectionRange(currentPosition, currentPosition + 1)
+                            setTimeout(() => inputElement!.setSelectionRange(currentPosition, currentPosition), 10)
                         }}
                     >
                         <p className={styles.full_name}>{el.long_name}</p>

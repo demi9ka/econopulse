@@ -1,6 +1,6 @@
 import { createContext, useState, FC, ReactNode, useEffect, useContext, useRef } from 'react'
 import { IStructureContext, StructureContext } from 'provider/StructureProvider'
-import { checkValid, decode } from 'utils/writeCode'
+import { decode } from 'utils/writeCode'
 
 type IFocusIndex = number | null
 type IListGroup = number
