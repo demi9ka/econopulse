@@ -1,16 +1,17 @@
-import { useContext, useEffect, useState } from 'react'
-import { IEditContext, EditContext } from 'provider/EditProvider'
-import { IStructureContext, StructureContext } from 'provider/StructureProvider'
-
+import { useEffect, useState } from 'react'
 import styles from './list-index.module.css'
 import { checkValid } from 'utils/writeCode'
+import { useStore } from 'provider/RootStoreProvider'
+import { observer } from 'mobx-react-lite'
 
 type IList = number[]
 
 const List = () => {
-    const { index } = useContext(StructureContext) as IStructureContext
+    const {
+        editor: { group, input_ref, focus_index, setModel, setFocusIndex, model, setModelValid },
+        struture: { index },
+    } = useStore()
 
-    const { group, inputRef, focus_index, setModel, setFocusIndex, model, setModelValid } = useContext(EditContext) as IEditContext
     const [list, setList] = useState<IList>([])
     useEffect(() => (group >= 0 ? setList(index!.group[group][1]) : setList(index!.data.map(el => el.id))), [group])
 
@@ -23,7 +24,7 @@ const List = () => {
                         key={id}
                         className={`${styles.item} ${focus_index === id && styles.active}`}
                         onClick={() => {
-                            const inputElement = inputRef.current
+                            const inputElement = input_ref.current
                             if (!inputElement) return
                             const currentPosition = inputElement!.selectionStart as number
                             const match = model.match(/\b\w+\b/g)
@@ -59,4 +60,4 @@ const List = () => {
         </div>
     )
 }
-export default List
+export default observer(List)

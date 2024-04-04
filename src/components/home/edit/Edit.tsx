@@ -1,18 +1,19 @@
 import { Modal } from '@mantine/core'
-import { useContext } from 'react'
-import { IStructureContext, StructureContext } from 'provider/StructureProvider'
-import { EditContext, IEditContext } from 'provider/EditProvider'
 import styles from './edit.module.css'
 import ListIndex from './index/ListIndex'
 import EditManagement from './management/EditManagement'
 import ListGroup from './group/ListGroup'
 import { useMediaQuery } from '@mantine/hooks'
 import CodeInput from './input/CodeInput'
+import { useStore } from 'provider/RootStoreProvider'
 
 const Edit = () => {
     const media_query = useMediaQuery('(max-width:700px)')
-    const { model_id, setModelId } = useContext(EditContext) as IEditContext
-    const { structure, setStructure } = useContext(StructureContext) as IStructureContext
+
+    const {
+        editor: { model_id, setModelId },
+        struture: { structure, setStructure },
+    } = useStore()
     if (model_id < 0) return <></>
     if (media_query)
         return (

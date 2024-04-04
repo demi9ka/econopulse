@@ -1,12 +1,13 @@
+import { useStore } from 'provider/RootStoreProvider'
 import styles from './edit-management.module.css'
-import { EditContext, IEditContext } from 'provider/EditProvider'
-import { StructureContext, IStructureContext } from 'provider/StructureProvider'
-import { useContext } from 'react'
 import { encode } from 'utils/writeCode'
+import { observer } from 'mobx-react-lite'
 
 const EditManagement = () => {
-    const { setStructure, structure, index } = useContext(StructureContext) as IStructureContext
-    const { model, setModelId, model_valid, model_id } = useContext(EditContext) as IEditContext
+    const {
+        struture: { structure, index, setStructure },
+        editor: { model, setModelId, model_valid, model_id },
+    } = useStore()
 
     return (
         <div className={styles.wrapper}>
@@ -25,4 +26,4 @@ const EditManagement = () => {
     )
 }
 
-export default EditManagement
+export default observer(EditManagement)

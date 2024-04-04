@@ -2,9 +2,6 @@ import { createContext, useState, FC, ReactNode, useEffect, useContext, useRef }
 import { IStructureContext, StructureContext } from 'provider/StructureProvider'
 import { decode } from 'utils/writeCode'
 
-type IFocusIndex = number | null
-type IListGroup = number
-
 export interface IEditContext {
     inputRef: React.RefObject<HTMLInputElement>
     focus_index: IFocusIndex //id индекса под курсором

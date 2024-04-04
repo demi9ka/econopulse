@@ -1,50 +1,21 @@
-import { AxiosResponse } from 'axios'
 import axios from './axios'
 import { IStructure } from 'interface'
 
-export const deleteFavorite = async (id: number): Promise<AxiosResponse> => {
-    try {
-        const res = await axios.delete('/api/delete_favorite', {
-            headers: {
-                Authorization: 'Bearer ' + localStorage.getItem('JWT') || null,
-            },
+export const reqDeleteFavorite = async (id: number) => {
+    return (
+        await axios.delete('/api/delete_favorite', {
             data: { id },
         })
-        return res
-    } catch (e: any) {
-        throw e.response.data.message
-    }
+    ).data
 }
 
-export const createFavorite = async (name: string, data: IStructure): Promise<AxiosResponse> => {
-    try {
-        const res = await axios.post(
-            '/api/create_favorite',
-            {
-                name,
-                data,
-            },
-            {
-                headers: {
-                    Authorization: 'Bearer ' + localStorage.getItem('JWT') || null,
-                },
-            }
-        )
-        return res
-    } catch (e: any) {
-        throw e.response.data.message
-    }
-}
-
-export const getFavorite = async (): Promise<AxiosResponse> => {
-    try {
-        const res = await axios.get('/api/get_favorite', {
-            headers: {
-                Authorization: 'Bearer ' + localStorage.getItem('JWT') || null,
-            },
+export const createFavorite = async (name: string, data: IStructure) => {
+    return (
+        await axios.post('/api/create_favorite', {
+            name,
+            data,
         })
-        return res
-    } catch (e: any) {
-        throw e.response.data.message
-    }
+    ).data
 }
+
+export const getFavorite = async () => (await axios.get('/api/get_favorite')).data

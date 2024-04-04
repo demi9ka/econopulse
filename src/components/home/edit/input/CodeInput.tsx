@@ -1,12 +1,13 @@
-import { useContext, useState } from 'react'
+import { useState } from 'react'
 import styles from './code-input.module.css'
-import { EditContext, IEditContext } from 'provider/EditProvider'
 import { checkValid } from 'utils/writeCode'
-import { StructureContext, IStructureContext } from 'provider/StructureProvider'
+import { useStore } from 'provider/RootStoreProvider'
 
 const CodeStructure = () => {
-    const { inputRef, model, setModel, setModelValid, model_valid } = useContext(EditContext) as IEditContext
-    const { index } = useContext(StructureContext) as IStructureContext
+    const {
+        editor: { input_ref, model, setModel, setModelValid, model_valid },
+        struture: { index },
+    } = useStore()
     const [valid_error, setValidError] = useState<string>('')
 
     const setText = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -22,8 +23,8 @@ const CodeStructure = () => {
         setModel(text_value)
     }
     const deleteValue = () => {
-        if (!inputRef.current) return
-        const { selectionStart, selectionEnd } = inputRef.current
+        if (!input_ref.current) return
+        const { selectionStart, selectionEnd } = input_ref.current
 
         if (selectionStart !== null && selectionStart === selectionEnd) {
             const cursorPosition = selectionStart
@@ -47,8 +48,8 @@ const CodeStructure = () => {
             const newInputValue = model.slice(0, wordStartIndex) + model.slice(wordEndIndex)
 
             setModel(newInputValue)
-            inputRef.current.focus()
-            setTimeout(() => inputRef.current!.setSelectionRange(wordStartIndex, wordStartIndex), 10)
+            input_ref.current.focus()
+            setTimeout(() => input_ref.current!.setSelectionRange(wordStartIndex, wordStartIndex), 10)
         }
     }
 
@@ -58,7 +59,7 @@ const CodeStructure = () => {
                 <span className={!model_valid ? styles.error : ''} title={valid_error}>
                     =
                 </span>
-                <input ref={inputRef} placeholder="GDP - (GDP * Keybid / 100)" onChange={e => setText(e)} onKeyDown={e => e.code == 'Backspace' && deleteValue()} value={model} className={styles.code} />
+                <input ref={input_ref} placeholder="GDP - (GDP * Keybid / 100)" onChange={e => setText(e)} onKeyDown={e => e.code == 'Backspace' && deleteValue()} value={model} className={styles.code} />
             </div>
         </div>
     )

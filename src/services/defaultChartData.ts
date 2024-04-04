@@ -1,11 +1,6 @@
-import { AxiosResponse } from 'axios'
+import { IChart } from 'interface'
 import axios from './axios'
 
-export default async (): Promise<AxiosResponse> => {
-    try {
-        const res = await axios.get('/api/default_chart_data')
-        return res
-    } catch (e: any) {
-        throw e.response.data.message
-    }
+export default async () => {
+    return (await axios.get<IChart>('/api/default_chart_data')).data
 }

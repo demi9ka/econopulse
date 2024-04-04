@@ -2,13 +2,13 @@ import { useMediaQuery } from '@mantine/hooks'
 import styles from './mobile-menu.module.css'
 import { Menu } from '@mantine/core'
 import { IconBrandTelegram, IconChartAreaFilled, IconLogin2, IconLogout2, IconMenu2, IconSettings, IconUser, IconZoomQuestion } from '@tabler/icons-react'
-import { UserContext, IUserContext } from 'provider/UserProvider'
-import { useContext } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import { useStore } from 'provider/RootStoreProvider'
+import { observer } from 'mobx-react-lite'
 
 const MobileMenu = () => {
     const navigate = useNavigate()
-    const { setUser, user } = useContext(UserContext) as IUserContext
+    const { user } = useStore()
     const media_mobile_small = useMediaQuery('(max-width:280px)')
     return (
         <Menu shadow="md" width={media_mobile_small ? 180 : 240} position="bottom-end">
@@ -21,7 +21,7 @@ const MobileMenu = () => {
                 <Menu.Item className={styles.menu_p} onClick={() => navigate('/')} leftSection={<IconChartAreaFilled width={20} />}>
                     Главная
                 </Menu.Item>
-                {user ? (
+                {user.is_auth ? (
                     <Menu.Item className={styles.menu_p} onClick={() => navigate('/profile')} leftSection={<IconUser width={20} />}>
                         Профиль
                     </Menu.Item>
@@ -51,8 +51,7 @@ const MobileMenu = () => {
                 {user && (
                     <Menu.Item
                         onClick={() => {
-                            localStorage.removeItem('JWT')
-                            setUser(null)
+                            user.logout()
                             navigate('/login')
                         }}
                         className={styles.menu_p}
@@ -65,4 +64,4 @@ const MobileMenu = () => {
         </Menu>
     )
 }
-export default MobileMenu
+export default observer(MobileMenu)

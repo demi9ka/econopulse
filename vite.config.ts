@@ -6,7 +6,7 @@ export default defineConfig({
     resolve: {
         alias: {
             components: '/src/components',
-            provider: '/src/provider/',
+            provider: '/src/provider/*',
             interface: '/src/interface.i.ts',
             utils: '/src/utils',
             services: '/src/services',

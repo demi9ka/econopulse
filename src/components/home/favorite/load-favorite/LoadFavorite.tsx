@@ -1,16 +1,19 @@
 import styles from './load-favorite.module.css'
 import { useContext, useState } from 'react'
 import { Loader } from '@mantine/core'
-import { FavoriteContext, IFavoriteContext } from 'provider/FavoriteProvider'
 import { StructureContext, IStructureContext } from 'provider/StructureProvider'
-import { createFavorite, deleteFavorite } from 'services/favorite'
+import { createFavorite, reqDeleteFavorite } from 'services/favorite'
 import { IconArrowsExchange, IconHexagonLetterR, IconX } from '@tabler/icons-react'
 import randomColor from 'utils/randomColor'
 import { cloneDeep } from 'lodash'
+import { useStore } from 'provider/RootStoreProvider'
 
 const LoadFavorite = () => {
-    const { favorite, setFavorite, setOpened, cache, setCache } = useContext(FavoriteContext) as IFavoriteContext
     const { setStructure } = useContext(StructureContext) as IStructureContext
+    const {
+        favorite: { favorite, setFavorite, setCache, cache, modal_open, setOpen, deleteFavorite, addCache, addFavorite, deleteCache },
+        struture: { structure },
+    } = useStore()
     const [error, setError] = useState('')
     const [active_item_id, setActiveItemId] = useState(-1)
     const [action_state, setActionState] = useState<number[]>([])
@@ -25,16 +28,17 @@ const LoadFavorite = () => {
             }
         })
         active_item.data[0].color = '#E9ECEF'
+
         setStructure(cloneDeep({ ...active_item }))
-        setOpened(false)
+        setOpen(false)
     }
     const deleteItem = async (id: number) => {
         try {
             setActionState(prev => [...prev, id])
-            const res = await deleteFavorite(id)
+            const res = await reqDeleteFavorite(id)
             if (res.status == 200) {
-                setCache(prev => [...prev, favorite!.filter(item => item.id == res.data.id)[0]])
-                setFavorite(prev => prev!.filter(item => item.id !== res.data.id))
+                addCache(favorite.find((_, item_id) => item_id == res.data.id)!)
+                deleteFavorite(res.data.id)
                 setActiveItemId(-1)
             }
         } catch (e: any) {
@@ -53,8 +57,13 @@ const LoadFavorite = () => {
         if (!data.data || !name) return
         try {
             setActionState(prev => [...prev, id])
-            const res = await createFavorite(name, data.data as any)
+            try {
+                const res = await createFavorite(name, data.data as any)
+            } catch (e: any) {
+                error.push()
+            }
             if (res.status == 201) {
+                favorite.push(res.data)
                 setFavorite(prev => [...prev!, { ...res.data }])
                 setCache(prev => prev.filter(el => el.id !== id))
             } else throw false

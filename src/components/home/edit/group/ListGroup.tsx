@@ -1,11 +1,12 @@
+import { observer } from 'mobx-react-lite'
 import styles from './list-group.module.css'
-import { useContext } from 'react'
-import { StructureContext, IStructureContext } from 'provider/StructureProvider'
-import { EditContext, IEditContext } from 'provider/EditProvider'
-const ListGroup = () => {
-    const { index } = useContext(StructureContext) as IStructureContext
-    const { group, setGroup } = useContext(EditContext) as IEditContext
+import { useStore } from 'provider/RootStoreProvider'
 
+const ListGroup = () => {
+    const {
+        struture: { index },
+        editor: { group, setGroup },
+    } = useStore()
     return (
         <div className={styles.group_wrapper}>
             <div className={`${styles.group_item} ${group === -1 && styles.active}`} onClick={() => setGroup(-1)}>
@@ -19,4 +20,4 @@ const ListGroup = () => {
         </div>
     )
 }
-export default ListGroup
+export default observer(ListGroup)

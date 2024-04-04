@@ -19,11 +19,11 @@
         "noFallthroughCasesInSwitch": true,
         "baseUrl": "src",
         "paths": {
-            "components": ["components/*"],
-            "provider": ["provider/*"],
+            "components": ["components/"],
+            "provider": ["provider/"],
             "interface": ["interface.i.ts"],
-            "utils": ["utils/*"],
-            "services": ["servicees/*"]
+            "utils": ["utils/"],
+            "services": ["servicees/"]
         }
     },
     "include": ["src/**/*", "vite-env.d.ts"],

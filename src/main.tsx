@@ -5,15 +5,16 @@ import '@mantine/core/styles.css'
 import './style.css'
 import { MantineProvider } from '@mantine/core'
 import { BrowserRouter } from 'react-router-dom'
-import AppProvider from 'provider/AppProvider'
+import { RootStoreContext } from 'provider/RootStoreProvider'
+import RootStore from 'store/rootStore'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
         <BrowserRouter>
             <MantineProvider defaultColorScheme="dark">
-                <AppProvider>
+                <RootStoreContext.Provider value={new RootStore()}>
                     <App />
-                </AppProvider>
+                </RootStoreContext.Provider>
             </MantineProvider>
         </BrowserRouter>
     </React.StrictMode>

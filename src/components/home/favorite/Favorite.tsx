@@ -1,13 +1,14 @@
-import { useContext } from 'react'
-import { FavoriteContext, IFavoriteContext } from 'provider/FavoriteProvider'
 import { Modal } from '@mantine/core'
 import SaveFavorite from './save-favorite/SaveFavorite'
 import LoadFavorite from './load-favorite/LoadFavorite'
+import { useStore } from 'provider/RootStoreProvider'
 
 const FavoriteMenu = () => {
-    const { opened, setOpened } = useContext(FavoriteContext) as IFavoriteContext
+    const {
+        favorite: { modal_open, setOpen },
+    } = useStore()
     return (
-        <Modal size={400} opened={opened} onClose={() => setOpened(false)} title="Избранное" centered>
+        <Modal size={400} opened={modal_open} onClose={() => setOpen(false)} title="Избранное" centered>
             <SaveFavorite />
             <LoadFavorite />
         </Modal>

@@ -1,5 +1,9 @@
+import { memo } from 'react'
 import styles from './footer.module.css'
+
 const Footer = () => {
+    console.log('render footer')
+
     return (
         <footer>
             <div className={styles.content}>
@@ -34,4 +38,4 @@ const Footer = () => {
         </footer>
     )
 }
-export default Footer
+export default memo(Footer)

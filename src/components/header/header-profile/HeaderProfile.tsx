@@ -1,21 +1,22 @@
-import { IUser } from 'interface'
 import styles from './header-profile.module.css'
-import { FC, useState, useContext } from 'react'
+import { useState } from 'react'
 import { Menu } from '@mantine/core'
 import { IconChevronDown, IconLogout2, IconSettings, IconUserCircle, IconUser } from '@tabler/icons-react'
-import { UserContext, IUserContext } from 'provider/UserProvider'
 import { useNavigate } from 'react-router-dom'
+import { useStore } from 'provider/RootStoreProvider'
+import { observer } from 'mobx-react-lite'
 
-const HeaderProfile: FC<{ data: IUser }> = ({ data }) => {
+const HeaderProfile = () => {
+    const { user } = useStore()
     const navigate = useNavigate()
-    const { setUser } = useContext(UserContext) as IUserContext
     const [active, setActive] = useState(false)
+    if (!user.is_auth) return <>Ошибка</>
     return (
         <Menu onChange={e => setActive(e)} shadow="md" withArrow width={170} position="bottom-end">
             <Menu.Target>
                 <div className={styles.wrapper}>
                     <IconUserCircle color="#74C0FC" />
-                    <p className={styles.name}>{data!.name}</p>
+                    <p className={styles.name}>{user.name}</p>
                     <IconChevronDown width={16} className={`${styles.icon} ${!active && styles.icon_rotate}`} />
                 </div>
             </Menu.Target>
@@ -29,7 +30,7 @@ const HeaderProfile: FC<{ data: IUser }> = ({ data }) => {
                 <Menu.Item
                     onClick={() => {
                         localStorage.removeItem('JWT')
-                        setUser(null)
+
                         navigate('/login')
                     }}
                     p={6}
@@ -41,4 +42,4 @@ const HeaderProfile: FC<{ data: IUser }> = ({ data }) => {
         </Menu>
     )
 }
-export default HeaderProfile
+export default observer(HeaderProfile)
