@@ -21,36 +21,37 @@ const CodeStructure = () => {
 
         setModel(text_value)
     }
-    const deleteValue = () => {
-        if (!inputRef.current) return
-        const { selectionStart, selectionEnd } = inputRef.current
+    // const deleteValue = () => {
+    //     if (!inputRef.current) return
 
-        if (selectionStart !== null && selectionStart === selectionEnd) {
-            const cursorPosition = selectionStart
-            let wordStartIndex = 0
-            let wordEndIndex = model.length
+    //     const { selectionStart, selectionEnd } = inputRef.current
 
-            for (let i = cursorPosition - 1; i >= 0; i--) {
-                if (' +-/*()'.includes(model.charAt(i))) {
-                    wordStartIndex = i + 2
-                    break
-                }
-            }
+    //     if (selectionStart !== null && selectionStart === selectionEnd) {
+    //         const cursorPosition = selectionStart
+    //         let wordStartIndex = 0
+    //         let wordEndIndex = model.length
 
-            for (let i = cursorPosition; i < model.length; i++) {
-                if (' +-/*()'.includes(model.charAt(i))) {
-                    wordEndIndex = i
-                    break
-                }
-            }
+    //         for (let i = cursorPosition - 1; i >= 0; i--) {
+    //             if (' +-/*()'.includes(model.charAt(i))) {
+    //                 wordStartIndex = i + 2
+    //                 break
+    //             }
+    //         }
 
-            const newInputValue = model.slice(0, wordStartIndex) + model.slice(wordEndIndex)
+    //         for (let i = cursorPosition; i < model.length; i++) {
+    //             if (' +-/*()'.includes(model.charAt(i))) {
+    //                 wordEndIndex = i
+    //                 break
+    //             }
+    //         }
 
-            setModel(newInputValue)
-            inputRef.current.focus()
-            setTimeout(() => inputRef.current!.setSelectionRange(wordStartIndex, wordStartIndex), 10)
-        }
-    }
+    //         const newInputValue = model.slice(0, wordStartIndex) + model.slice(wordEndIndex)
+
+    //         setModel(newInputValue)
+    //         inputRef.current.focus()
+    //         setTimeout(() => inputRef.current!.setSelectionRange(wordStartIndex, wordStartIndex - 1), 10)
+    //     }
+    // }
 
     return (
         <div className={styles.wrapper}>
@@ -58,7 +59,8 @@ const CodeStructure = () => {
                 <span className={!model_valid ? styles.error : ''} title={valid_error}>
                     =
                 </span>
-                <input ref={inputRef} placeholder="GDP - (GDP * Keybid / 100)" onChange={e => setText(e)} onKeyDown={e => e.code == 'Backspace' && deleteValue()} value={model} className={styles.code} />
+                <input ref={inputRef} placeholder="GDP - (GDP * Keybid / 100)" onChange={e => setText(e)} value={model} className={styles.code} />
+                {/* <input ref={inputRef} placeholder="GDP - (GDP * Keybid / 100)" onChange={e => setText(e)} onKeyDown={e => e.code == 'Backspace' && deleteValue()} value={model} className={styles.code} /> */}
             </div>
         </div>
     )

@@ -26,21 +26,25 @@ export const encode = (code: string, index: IIndex) => {
 }
 
 export const checkValid = (data: string, index: IIndex) => {
+    index
     if (!data.replace(/\s+/g, '').length)
         return {
             result: false,
             error: 'Пустая формула',
         }
-    const index_list = [...index!.data.map(el => `\\(?\\s*${el.short_name}\\s*\\)?`), '\\(?\\s*\\d+\\s*\\)?'].join('|')
-    const regex = new RegExp(`^\\s*(${index_list})(\\s*[+\\-*/]\\s*(${index_list}))*\\s*$`)
-    const res = regex.test(data)
-
-    if (!res)
-        return {
-            result: false,
-            error: 'Ошибка в формуле',
-        }
     return {
         result: true,
     }
+    // const index_list = [...index!.data.map(el => `\\(?\\s*${el.short_name}\\s*\\)?`), '\\(?\\s*\\d+\\s*\\)?'].join('|')
+    // const regex = new RegExp(`^\\s*(${index_list})(\\s*[+\\-*/]\\s*(${index_list}))*\\s*$`)
+    // const res = regex.test(data)
+
+    // if (!res)
+    //     return {
+    //         result: false,
+    //         error: 'Ошибка в формуле',
+    //     }
+    // return {
+    //     result: true,
+    // }
 }

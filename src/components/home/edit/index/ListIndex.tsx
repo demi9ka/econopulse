@@ -28,10 +28,12 @@ const List = () => {
                             const currentPosition = inputElement!.selectionStart as number
                             const match = model.match(/\b\w+\b/g)
                             let complete = false
+                            let ots = 0
                             let update_model = ''
                             if (match !== null) {
                                 match.forEach(word => {
                                     if (currentPosition >= model.indexOf(word) && currentPosition <= model.indexOf(word) + word.length) {
+                                        ots = currentPosition - model.indexOf(word)
                                         update_model = model.replace(word, el.short_name)
                                         setModel(update_model)
                                         complete = true
@@ -48,7 +50,8 @@ const List = () => {
                             setFocusIndex(id)
 
                             inputElement!.focus()
-                            setTimeout(() => inputElement!.setSelectionRange(currentPosition, currentPosition), 10)
+
+                            setTimeout(() => inputElement!.setSelectionRange(currentPosition + el.short_name.length - ots, currentPosition + el.short_name.length - ots), 10)
                         }}
                     >
                         <p className={styles.full_name}>{el.long_name}</p>
