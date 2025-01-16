@@ -1,0 +1,9 @@
+.update_date {
+    display: flex;
+    align-items: center;
+}
+.update_date p {
+    margin-left: 5px;
+    font-size: 14px;
+    opacity: 0.8;
+}

@@ -1,32 +1,66 @@
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import styles from './code-input.module.css'
-
-// import { StructureContext, IStructureContext } from 'provider/StructureProvider'
 import { EditContext, IEditContext } from 'provider/EditProvider'
+import { checkValid } from 'utils/writeCode'
+import { StructureContext, IStructureContext } from 'provider/StructureProvider'
 
 const CodeStructure = () => {
-    const { inputRef, model, setModel } = useContext(EditContext) as IEditContext
-    // const { index } = useContext(StructureContext) as IStructureContext
-    const setText = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const text_value = e.target.value
-        setModel(text_value)
-        // let value = text_value.toLocaleLowerCase()
-        // for (const el of index!.data) {
-        //     valkue = calc_value.replace(new RegExp(`(${el.short_name.toLowerCase()})`, 'g'), `{${el.id}}`)
-        // }
-        // const inputElement = inputRef.current
-        // if (!inputElement) return
+    const { inputRef, model, setModel, setModelValid, model_valid } = useContext(EditContext) as IEditContext
+    const { index } = useContext(StructureContext) as IStructureContext
+    const [valid_error, setValidError] = useState<string>('')
 
-        // const currentPosition = inputElement!.selectionStart
+    const setText = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setValidError('')
+        setModelValid(true)
+        const text_value = e.target.value
+        const valid = checkValid(text_value, index)
+        if (!valid.result) {
+            setValidError(valid.error!)
+            setModelValid(false)
+        }
+
+        setModel(text_value)
     }
+    // const deleteValue = () => {
+    //     if (!inputRef.current) return
+
+    //     const { selectionStart, selectionEnd } = inputRef.current
+
+    //     if (selectionStart !== null && selectionStart === selectionEnd) {
+    //         const cursorPosition = selectionStart
+    //         let wordStartIndex = 0
+    //         let wordEndIndex = model.length
+
+    //         for (let i = cursorPosition - 1; i >= 0; i--) {
+    //             if (' +-/*()'.includes(model.charAt(i))) {
+    //                 wordStartIndex = i + 2
+    //                 break
+    //             }
+    //         }
+
+    //         for (let i = cursorPosition; i < model.length; i++) {
+    //             if (' +-/*()'.includes(model.charAt(i))) {
+    //                 wordEndIndex = i
+    //                 break
+    //             }
+    //         }
+
+    //         const newInputValue = model.slice(0, wordStartIndex) + model.slice(wordEndIndex)
+
+    //         setModel(newInputValue)
+    //         inputRef.current.focus()
+    //         setTimeout(() => inputRef.current!.setSelectionRange(wordStartIndex, wordStartIndex - 1), 10)
+    //     }
+    // }
 
     return (
         <div className={styles.wrapper}>
-            {/* <div className={styles.code_wrapper}>
-                <span>=</span> <div ref={inputRef} contentEditable className={styles.code} dangerouslySetInnerHTML={{ __html: text }}></div>
-            </div> */}
-            <div className={styles.code_wrapper}>
-                <span>=</span> <input ref={inputRef} onChange={e => setText(e)} value={model} className={styles.code} />
+            <div className={`${styles.code_wrapper} ${!model_valid && styles.error}`}>
+                <span className={!model_valid ? styles.error : ''} title={valid_error}>
+                    =
+                </span>
+                <input ref={inputRef} placeholder="GDP - (GDP * Keybid / 100)" onChange={e => setText(e)} value={model} className={styles.code} />
+                {/* <input ref={inputRef} placeholder="GDP - (GDP * Keybid / 100)" onChange={e => setText(e)} onKeyDown={e => e.code == 'Backspace' && deleteValue()} value={model} className={styles.code} /> */}
             </div>
         </div>
     )

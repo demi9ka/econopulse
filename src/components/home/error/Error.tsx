@@ -10,7 +10,7 @@ const AppError = () => {
             <div className={styles.content}>
                 {error_data.map((error_item, index) => (
                     <div key={index} className={styles.error}>
-                        <p className={styles.error_content}>{error_item.content}</p>
+                        <div className={styles.error_content}>{error_item.content}</div>
                         <IconX
                             className={styles.cross}
                             onClick={() => {

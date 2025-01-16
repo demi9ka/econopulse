@@ -2,43 +2,40 @@
     width: 100%;
     display: flex;
     justify-content: center;
+    background-color: #1a1b1e;
 }
 .content {
     width: 100%;
     max-width: 1920px;
-    padding: 0 20px;
-    padding-bottom: 200px;
-    /* color: #f59f0046; */
+    padding: 0px 20px 40px 20px;
 }
 .header {
     display: flex;
     justify-content: space-between;
     padding: 10px 0;
+    align-items: center;
 }
-.header {
+.mobile_header .block {
+    display: flex;
+    align-items: center;
     justify-content: space-between;
-    align-items: center;
-    display: flex;
+    margin-top: 5px;
 }
-.set_chart_type {
-    width: 100%;
-}
-.update_date {
+.right_part {
     display: flex;
     align-items: center;
 }
-.update_date p {
-    margin-left: 5px;
-    font-size: 14px;
-    opacity: 0.8;
-}
+
 @media screen and (max-width: 550px) {
     .title {
         font-size: 17px;
         padding: 0;
     }
     .wrapper {
-        padding: 10px 10px;
+        padding: 0 2px;
         padding-bottom: 120px;
+    }
+    .content {
+        padding: 0px 5px 20px 5px;
     }
 }

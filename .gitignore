@@ -10,6 +10,7 @@ lerna-debug.log*
 
 main.py
 privacy.txt
+env
 
 node_modules
 dist

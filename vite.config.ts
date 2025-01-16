@@ -1,9 +1,8 @@
 import { defineConfig } from 'vite'
-import { chunkSplitPlugin } from 'vite-plugin-chunk-split'
 import react from '@vitejs/plugin-react'
 
 export default defineConfig({
-    plugins: [react(), chunkSplitPlugin()],
+    plugins: [react()],
     resolve: {
         alias: {
             components: '/src/components',

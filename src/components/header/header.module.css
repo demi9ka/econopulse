@@ -3,20 +3,15 @@
     position: fixed;
     top: 0;
     left: 0;
-    right: 0;
     background-color: #1a1b1e;
-    z-index: 1;
-}
-.wrapper {
-    width: 100%;
     display: flex;
     justify-content: center;
 }
+
 .content {
-    padding: 5px 10px;
-    height: 3.5rem;
     width: 100%;
     max-width: 1920px;
+    padding: 5px 10px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -63,7 +58,8 @@
 .auth:hover {
     opacity: 0.9;
 }
-.tg_link {
+.tg_link,
+.manual_link {
     padding: 6px 12px;
     border-radius: 4px;
     transition: 0.1s;
@@ -71,17 +67,22 @@
     justify-content: center;
     align-items: center;
     margin-right: 5px;
+    text-decoration: none;
 }
 .tg_link:hover {
     background-color: #388af538;
 }
+.manual_link p {
+    margin-right: 5px;
+}
+.manual_link:hover {
+    background-color: #f5d23838;
+    color: #f5d238;
+}
 
-@media screen and (max-width: 550px) {
-    .header {
-        padding: 10px;
-    }
+@media screen and (max-width: 520px) {
     .header div h2 {
-        font-size: 20px;
+        font-size: 28px;
         font-weight: 400;
     }
     .logo {

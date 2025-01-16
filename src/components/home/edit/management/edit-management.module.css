@@ -16,6 +16,11 @@
     cursor: pointer;
     transition: 0.1s;
 }
+.save_btn:disabled {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
 .save_btn:hover {
     opacity: 0.9;
 }

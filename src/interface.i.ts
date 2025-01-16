@@ -21,7 +21,7 @@ export type IFavorite = IFavoriteItem[] | null | undefined
 export interface IModel {
     data: string
     color: string
-    name: string
+    // name: string
     reverse: boolean
 }
 

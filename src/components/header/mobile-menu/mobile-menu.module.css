@@ -1,0 +1,23 @@
+.menu_p * {
+    font-size: 18px;
+}
+.menu_p {
+    padding: 8px 6px;
+    color: #749ff5;
+}
+.mobile_menu_wrapper {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+.tg_link * {
+    color: #749ff5;
+}
+@media screen and (max-width: 280px) {
+    .menu_p {
+        padding: 6px 4px;
+    }
+    .menu_p * {
+        font-size: 14px;
+    }
+}

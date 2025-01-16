@@ -1,7 +1,5 @@
 .wrapper {
     width: 100%;
-    display: flex;
-    align-items: center;
     padding-bottom: 10px;
 }
 .code_wrapper {
@@ -10,9 +8,14 @@
     display: flex;
     align-items: center;
     border-radius: 4px;
+    transition: 0.1s;
+    border: 1px solid #ff000000;
+}
+.code_wrapper.error {
+    border: 1px solid #ff0000e0;
 }
 .code_wrapper span {
-    opacity: 0.4;
+    color: #a7a7a7;
     padding: 0 10px;
 }
 .code {

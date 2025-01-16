@@ -1,0 +1,39 @@
+.container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.content {
+    padding: 10px;
+    width: 100%;
+    max-width: 1920px;
+}
+.content * {
+    user-select: text;
+}
+.block {
+    margin-bottom: 40px;
+}
+.block_name {
+    font-size: 30px;
+    font-weight: 400;
+}
+.block_text {
+    margin: 5px 10px;
+}
+
+@media screen and (max-width: 520px) {
+    .manual_wrapper {
+        padding: 10px;
+    }
+    .manual_wrapper h1 {
+        font-size: 25px;
+        /* font-size: calc(100vw / 32.5); */
+    }
+    .hint {
+        margin: 10px 0;
+    }
+    .nav_wrapper {
+        display: none;
+    }
+}

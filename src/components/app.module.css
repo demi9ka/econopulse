@@ -1,5 +1,17 @@
 .container {
     width: 100%;
     height: 100svh;
-    padding-top: 56px;
+    padding-top: 49px;
+    padding-bottom: 100px;
+}
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    height: calc(100svh - 49px);
+}
+
+.content_wrapper {
+    padding-bottom: 100px;
 }

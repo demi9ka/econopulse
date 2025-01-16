@@ -1,6 +1,6 @@
 import { createContext, useState, FC, ReactNode, useEffect, useContext, useRef } from 'react'
 import { IStructureContext, StructureContext } from 'provider/StructureProvider'
-import { checkValid, decode } from 'utils/writeCode'
+import { decode } from 'utils/writeCode'
 
 type IFocusIndex = number | null
 type IListGroup = number
@@ -36,12 +36,9 @@ const EditProvider: FC<{ children: ReactNode }> = ({ children }) => {
     }, [model_id])
 
     const input_element = inputRef.current
-
     useEffect(() => {
         input_element && input_element.focus()
     }, [input_element])
-
-    useEffect(() => setModelValid(checkValid(model)), [model])
 
     return <EditContext.Provider value={{ focus_index, model, model_id, model_valid, setModelId, setModelValid, group, setFocusIndex, inputRef, setModel, setGroup }}>{children}</EditContext.Provider>
 }
