@@ -6,9 +6,7 @@ const Footer = () => {
                 <div className={styles.part}>
                     <div className={styles.logo}>
                         <img className={styles.logo} src="/logo.svg" alt="" />
-                        <p>
-                            Econopulse<span className={styles.prefix}>.ru</span>{' '}
-                        </p>
+                        <p>Econopulse</p>
                     </div>
                     <h1 className={styles.hyphen}>
                         Статистика и анализ <br />

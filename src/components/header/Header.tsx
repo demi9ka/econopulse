@@ -17,9 +17,7 @@ const Header = () => {
                 <div className={styles.nav}>
                     <Link className={styles.poster} to={'/'}>
                         <img className={styles.logo} src="/logo.svg" alt="" />
-                        <h2>
-                            Econopulse<span className={styles.prefix}>.ru</span>{' '}
-                        </h2>
+                        <h2>Econopulse</h2>
                     </Link>
                 </div>
                 {!media_mobile ? (
