@@ -28,7 +28,7 @@ const Header = () => {
                             <p>Как пользоваться</p>
                             <IconZoomQuestion color="#f5d238" size={20} />
                         </Link>
-                        <a className={styles.tg_link} target="_blank" href="https://t.me/econopulse_ru">
+                        <a className={styles.tg_link} target="_blank" href="https://t.me/+veIOpaGZwlU1NzJi">
                             <IconBrandTelegram color="#5fa2fa" size={20} />
                         </a>
                         {user ? (
